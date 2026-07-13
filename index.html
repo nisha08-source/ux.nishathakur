@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisha Thakur | UX/UI Designer</title>
+
+    <!-- Fonts: Cormorant Garamond (Headings), Manrope (Body), Satisfy (Handwriting) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Manrope:wght@400;500;600;700&family=Satisfy&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bgPrimary: '#F4F1EB', // Cream from reference
+                        bgSecondary: '#EBE6DF',
+                        brandBlue: '#6385A6', // Denim blue from reference
+                        textMain: '#2C3033', // Deep slate
+                        textMuted: '#6B7A8B',
+                        accent: '#B53336', // Cherry red from reference
+                        accentHover: '#96282B',
+                        stickyYellow: '#F1EBD6',
+                        stickyBlue: '#DFE8EF',
+                        stickyPink: '#F2DFE0',
+                        tapeMint: '#AEC3D4',
+                        tapePeach: '#E3C5C6',
+                        paper: '#FDFCF9',
+                        ink: '#2C3033',
+                        inkLight: '#6B7A8B',
+                        washiPeach: '#E3C5C6',
+                        washiMint: '#AEC3D4',
+                        washiLavender: '#C4C3D0'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Manrope', 'sans-serif'],
+                        hand: ['Satisfy', 'cursive'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px rgba(150, 150, 150, 0.1)',
+                        'deep': '0 10px 30px rgba(150, 150, 150, 0.15), 0 0 0 1px rgba(150, 150, 150, 0.05)',
+                        'polaroid': '0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.05)',
+                        'sticky': '2px 4px 10px rgba(0,0,0,0.06)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F4F1EB;
+            color: #2C3033;
+            overflow-x: hidden;
+        }
+
+        /* Nav Pill effect */
+        .nav-pill {
+            background: #F4F1EB;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(150, 150, 150, 0.1);
+        }
+
+        /* New Polaroid Styling (Cleaner) */
+        .polaroid-frame {
+            background: white;
+            padding: 10px 10px 35px 10px;
+            box-shadow: var(--tw-shadow-polaroid);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s;
+            position: absolute;
+            transform-origin: center center;
+            border-radius: 4px;
+        }
+
+        .polaroid-frame:hover {
+            transform: scale(1.05) translateY(-5px) !important;
+            z-index: 50 !important;
+        }
+
+        /* Sticky Notes styling */
+        .sticky-note {
+            padding: 1.25rem;
+            box-shadow: var(--tw-shadow-sticky);
+            position: absolute;
+            transition: transform 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Typography overrides for Cormorant Garamond */
+        .font-serif {
+            letter-spacing: -0.01em;
+        }
+
+        /* Chat Bubbles */
+        .chat-bubble {
+            padding: 12px 18px;
+            border-radius: 18px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            max-width: 220px;
+            box-shadow: var(--tw-shadow-soft);
+            position: absolute;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 500;
+        }
+
+        .chat-bubble-gray {
+            background: white;
+            color: #6B7A8B;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-bubble-pink {
+            background: #B53336;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        ::selection {
+            background-color: #B53336;
+            color: white;
+        }
+
+        /* Utility to preserve rotation during hover */
+        .preserve-3d:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 50 !important;
+        }
+
+        .bg-grid-pattern {
+            background-size: 32px 32px;
+            background-image:
+                linear-gradient(to right, rgba(44, 48, 51, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(44, 48, 51, 0.04) 1px, transparent 1px);
+        }
+
+        /* Decorative Textures & Shapes */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        .drawn-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .drawn-underline::after {
+            content: '';
+            position: absolute;
+            width: 104%;
+            height: 14px;
+            bottom: -4px;
+            left: -2%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0 5 Q 50 12 100 2' stroke='%23B53336' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+            background-size: 100% 100%;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* --- NEW ABOUT SECTION INTERACTIONS --- */
+        .interactive-word {
+            position: relative;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .interactive-word:hover {
+            color: #B53336;
+        }
+
+        /* Floating Tooltip Stickers */
+        .sticker-tooltip {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
+            transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: var(--tw-shadow-polaroid);
+            border: 5px solid white;
+            border-bottom-width: 15px;
+            /* Polaroid feel */
+            border-radius: 2px;
+            width: 150px;
+            height: 160px;
+            object-fit: cover;
+            background: white;
+        }
+
+        .sticker-tooltip.active {
+            opacity: 1;
+            /* Transform is actively controlled by JS for rotation */
+        }
+
+        /* Magic Polaroid Image Swap */
+        .magic-polaroid .back-img {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .magic-polaroid:hover .back-img {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .magic-polaroid:hover .front-img {
+            opacity: 0;
+            transform: scale(1.05);
+        }
+
+        .front-img {
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Cassette Reel Animation */
+        .cassette-reel {
+            transform-origin: center;
+            transition: transform 2s linear;
+        }
+
+        .cassette:hover .cassette-reel {
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+
+<body class="antialiased relative font-sans text-textMain">
+
+    <nav
+        class="fixed top-6 left-1/2 -translate-x-1/2 z-50 p-2.5 rounded-full nav-pill flex items-center justify-between w-[92%] max-w-[850px] transition-all duration-300">
+
+        <!-- Logo Area (Flex-1 ensures balance) -->
+        <div class="flex-1 flex justify-start pl-5 md:pl-6">
+            <a href="#home"
+                class="font-serif font-semibold text-[26px] tracking-tight text-ink flex items-center leading-none">
+                Nisha.
+            </a>
+        </div>
+
+        <!-- Desktop Links (Strictly Centered with increased breathing room) -->
+        <div
+            class="hidden md:flex flex-none items-center gap-10 lg:gap-12 text-[15px] font-medium text-textMuted tracking-wide">
+            <a href="#work" class="hover:text-ink transition-colors">Work</a>
+            <a href="#process" class="hover:text-ink transition-colors">Process</a>
+            <a href="#about" class="hover:text-ink transition-colors">About</a>
+        </div>
+
+        <!-- Action Button (Flex-1 ensures balance) -->
+        <div class="flex-1 flex items-center justify-end pr-1">
+            <a href="#"
+                class="flex items-center justify-center px-7 py-2.5 rounded-full bg-accent text-white text-[15px] font-medium hover:bg-accentHover transition-colors duration-300 shadow-sm whitespace-nowrap">
+                Resume
+            </a>
+        </div>
+    </nav>
+
+    <header id="home"
+        class="relative pt-40 md:pt-48 pb-24 md:pb-32 overflow-hidden w-full bg-bgPrimary bg-grid-pattern flex flex-col justify-center min-h-[90vh] md:min-h-screen">
+
+        <!-- Decorative Asset: Noise Texture Overlay -->
+        <div class="absolute inset-0 w-full h-full bg-noise pointer-events-none z-0"></div>
+
+        <!-- Decorative Asset: Soft Ambient Glows -->
+        <div
+            class="absolute top-[15%] left-[20%] w-[45vw] max-w-[600px] aspect-square bg-stickyPink/40 rounded-full mix-blend-multiply filter blur-[90px] pointer-events-none z-0">
+        </div>
+        <div
+            class="absolute bottom-[10%] right-[15%] w-[40vw] max-w-[500px] aspect-square bg-tapeMint/30 rounded-full mix-blend-multiply filter blur-[90px] pointer-events-none z-0">
+        </div>
+
+        <!-- THE FRAME: Structured, Balanced Moodboard (Desktop) -->
+        <div class="absolute inset-0 w-full h-full max-w-[1440px] mx-auto z-10 pointer-events-none hidden xl:block">
+
+            <!-- Decorative Asset: Hand-drawn Connecting Arrow -->
+            <div class="absolute top-[32%] left-[24%] transform rotate-12 opacity-30 z-10">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 90 Q 30 20 85 25" stroke="#2C3033" stroke-width="2" stroke-linecap="round"
+                        stroke-dasharray="4 6" />
+                    <path d="M72 13 L 88 25 L 70 38" stroke="#2C3033" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" fill="none" />
+                </svg>
+            </div>
+
+            <!-- Decorative Asset: Subtle Dot Grid Accent -->
+            <div class="absolute bottom-[28%] right-[26%] opacity-20 z-10">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <pattern id="dots" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+                        <circle cx="2" cy="2" r="1.5" fill="#2C3033" />
+                    </pattern>
+                    <rect width="60" height="60" fill="url(#dots)" />
+                </svg>
+            </div>
+
+            <!-- Top Left: Handwritten List Note -->
+            <div
+                class="absolute top-[22%] left-[6%] transform -rotate-2 hover:rotate-0 transition-transform duration-500 pointer-events-auto">
+                <div
+                    class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-5 bg-washiMint opacity-80 z-20 transform rotate-1 shadow-sm mix-blend-multiply">
+                </div>
+                <div class="bg-paper p-6 shadow-sticky w-[220px] rounded-sm border border-black/5 relative">
+                    <h3 class="font-hand text-2xl text-accent mb-3 border-b border-gray-100 pb-2">My toolkit</h3>
+                    <ul class="font-sans text-[14px] font-medium space-y-2.5 text-inkLight">
+                        <li>User Research</li>
+                        <li>Product Strategy</li>
+                        <li>Wireframing</li>
+                        <li>Design Systems</li>
+                    </ul>
+                    <!-- Decorative Asset: Secondary Tape -->
+                    <div
+                        class="absolute -bottom-2 right-4 w-12 h-4 bg-washiLavender opacity-70 z-20 transform -rotate-3 shadow-sm mix-blend-multiply">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Right: Aesthetic Photo Polaroid -->
+            <div
+                class="absolute top-[25%] right-[8%] transform rotate-4 hover:rotate-1 transition-transform duration-500 pointer-events-auto">
+                <!-- Decorative Asset: Squiggle Graphic -->
+                <div class="absolute -top-6 -left-12 z-0 opacity-40">
+                    <svg width="70" height="40" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 25 Q 20 5 35 25 T 65 25 T 95 25" stroke="#B53336" stroke-width="3"
+                            stroke-linecap="round" fill="none" />
+                    </svg>
+                </div>
+                <div
+                    class="absolute -top-3 -right-2 w-12 h-5 bg-washiPeach opacity-80 z-20 transform rotate-12 shadow-sm mix-blend-multiply">
+                </div>
+                <div class="bg-white p-3 pb-8 shadow-polaroid rounded-sm w-[180px]">
+                    <div class="aspect-square bg-gray-100 overflow-hidden relative border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1507133750073-162985172288?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Design inspiration" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Left: Simple Quote Card -->
+            <div
+                class="absolute bottom-[20%] left-[10%] transform rotate-3 hover:rotate-0 transition-transform duration-500 pointer-events-auto z-20">
+                <!-- Decorative Asset: Paperclip Overlay -->
+                <div class="absolute -top-5 -left-1 z-30 transform -rotate-12 drop-shadow-sm opacity-90">
+                    <svg width="28" height="42" viewBox="0 0 24 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14 6V36C14 39.3137 11.3137 42 8 42C4.68629 42 2 39.3137 2 36V12C2 9.79086 3.79086 8 6 8C8.20914 8 10 9.79086 10 12V34C10 35.1046 9.10457 36 8 36C6.89543 36 6 35.1046 6 34V14"
+                            stroke="#6B7A8B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div
+                    class="bg-stickyYellow p-5 shadow-sticky w-[200px] rounded-sm border border-black/5 flex flex-col items-center">
+                    <div class="w-3 h-3 rounded-full bg-accent/30 mb-3 shadow-inner"></div>
+                    <p class="font-hand text-xl text-ink leading-tight text-center">"Good design should feel a little
+                        human."</p>
+                </div>
+            </div>
+
+            <!-- Bottom Right: Main Portrait Polaroid -->
+            <div
+                class="absolute bottom-[15%] right-[10%] transform -rotate-3 hover:rotate-0 transition-transform duration-500 pointer-events-auto z-20">
+                <div
+                    class="absolute -top-2 left-6 w-14 h-5 bg-washiMint opacity-80 z-20 transform -rotate-6 shadow-sm mix-blend-multiply">
+                </div>
+                <div class="bg-white p-3 pb-10 shadow-polaroid rounded-sm w-[200px] relative">
+                    <div class="aspect-[4/5] bg-gray-200 overflow-hidden border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nisha Thakur" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <p class="font-hand text-lg text-inkLight text-center mt-2 absolute bottom-2 w-full left-0">That's
+                        me!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- THE SACRED CENTER: Clear Typography & Core Message -->
+        <div
+            class="relative z-30 max-w-4xl mx-auto px-6 text-center flex flex-col items-center pointer-events-auto mt-20 xl:mt-0">
+
+            <!-- Decorative Asset: Hand-drawn Sparkle -->
+            <div
+                class="absolute top-0 right-[25%] sm:right-[35%] md:right-[38%] text-accent/50 w-7 h-7 transform rotate-12 hidden sm:block">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 0C12 6.62742 16.3726 10.6274 23 10.6274C16.3726 10.6274 12 14.6274 12 21.2548C12 14.6274 7.62742 10.6274 1 10.6274C7.62742 10.6274 12 6.62742 12 0Z" />
+                </svg>
+            </div>
+
+            <!-- Eyebrow (Name) -->
+            <h2 class="font-hand text-[32px] md:text-[40px] text-inkLight mb-4 transform -rotate-2 relative z-10">
+                Nisha Thakur
+            </h2>
+
+            <!-- Main Headline (Aligned exactly to reference: 3 lines) -->
+            <h1
+                class="font-serif text-[38px] md:text-[46px] lg:text-[54px] text-accent leading-[1.2] mb-8 md:mb-10 tracking-tight max-w-[800px] mx-auto font-medium">
+                UX/UI Designer making digital<br class="hidden md:block">
+                products work the way people<br class="hidden md:block">
+                <span class="drawn-underline">actually think.</span>
+            </h1>
+
+            <!-- Supporting Paragraph (Constrained width to reduce cognitive load) -->
+            <p
+                class="font-sans italic text-[14px] md:text-[15px] text-inkLight/90 max-w-[460px] mx-auto leading-[1.8] tracking-wide font-normal">
+                (an empathetic problem-solver who asks the right questions to simplify complex challenges into
+                meaningful solutions)
+            </p>
+
+            <!-- Mobile Only Portrait (Hidden on desktop) -->
+            <div class="mt-16 xl:hidden w-52 transform rotate-2 mx-auto pointer-events-auto">
+                <div class="bg-white p-3 pb-10 shadow-polaroid rounded-sm w-full relative">
+                    <div
+                        class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-5 bg-washiPeach opacity-80 z-20 transform -rotate-2 mix-blend-multiply">
+                    </div>
+                    <div class="aspect-[4/5] bg-gray-200 overflow-hidden border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nisha Thakur" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="work" class="relative py-24 md:py-32 bg-brandBlue">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+
+            <!-- Section Header -->
+            <div class="mb-12 md:mb-16 relative inline-block">
+                <h2 class="font-serif text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 relative z-10">
+                    Selected projects
+                </h2>
+                <p class="font-sans text-lg md:text-xl font-light text-white/80 max-w-lg leading-relaxed">A collection
+                    of projects where research,
+                    creativity, and problem-solving come together.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+
+                <!-- Project 1: HMM Laundry -->
+                <a href="#" class="group flex flex-col relative cursor-pointer outline-none w-full h-full">
+                    <div
+                        class="bg-paper p-5 md:p-6 rounded-sm shadow-soft transition-all duration-400 group-hover:-translate-y-2 group-hover:shadow-deep border border-black/5 relative flex flex-col flex-grow w-full h-full">
+
+                        <!-- Brand Detail: Washi Tape -->
+                        <div
+                            class="absolute -top-3 left-8 w-24 h-6 bg-washiPeach transform -rotate-3 opacity-90 shadow-sm z-20">
+                        </div>
+
+                        <!-- Visual Anchor (Image Dominance) -->
+                        <div
+                            class="relative w-full aspect-[4/3] shrink-0 rounded overflow-hidden mb-7 bg-gray-100 border border-black/5">
+                            <img src="https://images.unsplash.com/photo-1618220179298-406216447814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="HMM Laundry App Mockup" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+
+                        <!-- Content Hierarchy -->
+                        <div class="flex flex-col flex-grow">
+                            <!-- Meta Data & Action -->
+                            <div class="flex items-center justify-between mb-4 gap-4">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-inkLight uppercase tracking-widest shadow-sm">UI/UX</span>
+                                    <span class="px-3 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-inkLight uppercase tracking-widest shadow-sm">App Design</span>
+                                </div>
+                            </div>
+
+                            <!-- Title & Concise Teaser -->
+                            <h3
+                                class="font-serif text-3xl font-semibold tracking-tight text-ink mb-3 group-hover:text-accent transition-colors">
+                                HMM Laundry</h3>
+                            <p class="font-sans text-inkLight text-[15px] leading-relaxed">
+                                A simple and effortless mobile experience designed to help students book, track, and
+                                manage laundry services without the usual hassle.
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 2: UniEvents -->
+                <a href="#" class="group flex flex-col relative cursor-pointer outline-none w-full h-full">
+                    <div
+                        class="bg-paper p-5 md:p-6 rounded-sm shadow-soft transition-all duration-400 group-hover:-translate-y-2 group-hover:shadow-deep border border-black/5 relative flex flex-col flex-grow w-full h-full">
+
+                        <!-- Brand Detail: Washi Tape -->
+                        <div
+                            class="absolute -top-3 right-8 w-20 h-6 bg-washiMint transform rotate-2 opacity-90 shadow-sm z-20">
+                        </div>
+
+                        <!-- Visual Anchor (Image Dominance) -->
+                        <div
+                            class="relative w-full aspect-[4/3] shrink-0 rounded overflow-hidden mb-7 bg-gray-100 border border-black/5">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="UniEvents Platform Mockup" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+
+                        <!-- Content Hierarchy -->
+                        <div class="flex flex-col flex-grow">
+                            <!-- Meta Data & Action -->
+                            <div class="flex items-center justify-between mb-4 gap-4">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-inkLight uppercase tracking-widest shadow-sm">Product Design</span>
+                                    <span class="px-3 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-inkLight uppercase tracking-widest shadow-sm">Web Platform</span>
+                                </div>
+                            </div>
+
+                            <!-- Title & Concise Teaser -->
+                            <h3
+                                class="font-serif text-3xl font-semibold tracking-tight text-ink mb-3 group-hover:text-accent transition-colors">
+                                UniEvents</h3>
+                            <p class="font-sans text-inkLight text-[15px] leading-relaxed">
+                                A user-friendly platform connecting students and organizers, making it incredibly simple
+                                to discover and manage college events.
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="relative py-24 md:py-32 bg-bgPrimary overflow-hidden">
+
+        <!-- Decorative Asset: Ambient Glow -->
+        <div
+            class="absolute top-[20%] left-[-10%] w-[50vw] max-w-[600px] aspect-square bg-stickyBlue/40 rounded-full mix-blend-multiply filter blur-[90px] pointer-events-none z-0">
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+
+            <!-- Section Header -->
+            <div class="mb-16 md:mb-24 text-center relative flex flex-col items-center">
+                <div
+                    class="absolute -top-6 left-1/2 -translate-x-[60%] w-20 h-6 bg-washiLavender opacity-70 transform -rotate-3 z-0 mix-blend-multiply">
+                </div>
+                <h2
+                    class="font-serif text-4xl md:text-5xl font-semibold tracking-tight text-ink relative z-10 inline-block">
+                    Work Experience
+                </h2>
+                <p class="font-hand text-xl text-inkLight mt-4 transform rotate-1">The journey so far...</p>
+            </div>
+
+            <!-- Editorial Timeline List -->
+            <div class="space-y-16 md:space-y-20 relative">
+
+                <!-- Subtle guiding spine (Editorial structure line) -->
+                <div
+                    class="absolute left-4 md:left-[30%] top-6 bottom-6 w-px bg-black/10 hidden md:block z-0 border-l border-dashed border-inkLight/30">
+                </div>
+
+                <!-- Experience 1: Mosaic Wellness -->
+                <div class="relative z-10 flex flex-col md:flex-row gap-6 md:gap-16 group">
+
+                    <!-- Meta Column (Date & Role Progression) -->
+                    <div class="md:w-[30%] flex md:justify-end md:text-right pt-1 relative">
+                        <!-- Custom Timeline Node (Hand-drawn feel) -->
+                        <div
+                            class="absolute right-[-36px] top-3 w-4 h-4 bg-paper border-[3px] border-accent rounded-full z-10 shadow-sm group-hover:scale-110 group-hover:bg-accent transition-all duration-300 hidden md:block">
+                        </div>
+
+                        <div class="pl-8 md:pl-0">
+                            <span class="font-hand text-accent text-2xl inline-block mb-1 group-hover:-translate-y-1 transition-transform">Oct 2024 — Present</span>
+                            <div class="mt-2 space-y-4">
+                                <!-- Current Role -->
+                                <div>
+                                    <h4
+                                        class="font-sans font-bold text-[14px] text-ink uppercase tracking-widest leading-tight">
+                                        Senior Product<br class="hidden md:block"> Designer</h4>
+                                    <p class="font-sans text-[12px] text-inkLight mt-0.5">Jun 2026 - Present</p>
+                                </div>
+                                <!-- Previous Role -->
+                                <div>
+                                    <h4
+                                        class="font-sans font-semibold text-[13px] text-inkLight uppercase tracking-wide leading-tight">
+                                        Product Designer</h4>
+                                    <p class="font-sans text-[12px] text-inkLight/70 mt-0.5">Oct 2024 - Jun 2026</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dossier Card Column -->
+                    <div class="md:w-[70%] pl-8 md:pl-0">
+                        <div
+                            class="bg-paper p-7 md:p-9 rounded-sm shadow-soft group-hover:shadow-deep transition-all duration-500 border border-black/5 relative hover:-translate-y-1">
+
+                            <!-- Brand Detail: Washi Tape -->
+                            <div
+                                class="absolute -top-3 -right-3 w-14 h-5 bg-washiMint opacity-90 transform rotate-6 shadow-sm mix-blend-multiply z-20">
+                            </div>
+
+                            <h3
+                                class="font-serif text-3xl font-semibold text-ink mb-4 group-hover:text-accent transition-colors">
+                                Be Bodywise <span class="text-inkLight text-xl font-medium">(Mosaic Wellness)</span>
+                            </h3>
+
+                            <p class="font-sans text-inkLight text-[15.5px] leading-[1.8] mb-6">
+                                Owning end-to-end design for Be Bodywise — focusing on UX and visual work that directly
+                                lifts conversion rates and establishes brand consistency. Additionally leading
+                                cross-brand experiments for Little Joys to drive engagement.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">Product Design</span>
+                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">User Research</span>
+                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">Webflow</span>
+                            </div>
+
+                            <!-- Decorative Achievement Sticky -->
+                            <div
+                                class="absolute -bottom-8 -right-4 bg-stickyYellow p-3 shadow-sticky w-[140px] rounded-sm transform rotate-6 z-30 pointer-events-none hidden sm:block opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:-rotate-2 group-hover:-translate-y-2">
+                                <div class="w-1.5 h-1.5 rounded-full bg-accent/40 mb-1 mx-auto"></div>
+                                <p class="font-hand text-[15px] text-ink leading-tight text-center">Led major conversion
+                                    lift! 🚀</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 2: Auzmor -->
+                <div class="relative z-10 flex flex-col md:flex-row gap-6 md:gap-16 group">
+
+                    <div class="md:w-[30%] flex md:justify-end md:text-right pt-1 relative">
+                        <div
+                            class="absolute right-[-36px] top-3 w-4 h-4 bg-paper border-[3px] border-inkLight/40 rounded-full z-10 shadow-sm group-hover:scale-110 group-hover:border-accent transition-all duration-300 hidden md:block">
+                        </div>
+
+                        <div class="pl-8 md:pl-0">
+                            <span class="font-hand text-inkLight text-2xl inline-block mb-1 group-hover:text-accent transition-colors">Jun 2022 — Sep 2024</span>
+                            <div class="mt-2">
+                                <h4
+                                    class="font-sans font-bold text-[14px] text-ink uppercase tracking-widest leading-tight">
+                                    Product Designer</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:w-[70%] pl-8 md:pl-0">
+                        <div
+                            class="bg-paper p-7 md:p-9 rounded-sm shadow-soft group-hover:shadow-deep transition-all duration-500 border border-black/5 relative hover:-translate-y-1">
+
+                            <!-- Brand Detail: Washi Tape -->
+                            <div
+                                class="absolute -top-3 -left-4 w-16 h-5 bg-washiPeach opacity-80 transform -rotate-4 shadow-sm mix-blend-multiply z-20">
+                            </div>
+
+                            <h3
+                                class="font-serif text-3xl font-semibold text-ink mb-4 group-hover:text-accent transition-colors">
+                                Auzmor</h3>
+
+                            <p class="font-sans text-inkLight text-[15.5px] leading-[1.8] mb-6">
+                                Led the design architecture for <span class="text-ink font-medium">Auzmor Office</span>,
+                                <span class="text-ink font-medium">Learn (LXP)</span>, and
+                                <span class="text-ink font-medium">Freshflows</span>. Tasked with building complex B2B
+                                SaaS products entirely from scratch, turning ambiguous requirements into scalable,
+                                intuitive systems.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">Product Design</span>
+                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">B2B SaaS</span>
+                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">Prototyping</span>
+                            </div>
+
+                            <!-- Interactive Image Element (Casual Stack feel) -->
+                            <div
+                                class="absolute right-8 -top-12 w-24 transform rotate-12 opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-polaroid bg-white p-1.5 pb-4 z-30 pointer-events-none hidden lg:block group-hover:rotate-6 group-hover:-translate-y-2">
+                                <div class="aspect-square bg-gray-200 overflow-hidden border border-gray-100">
+                                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Wireframing" class="w-full h-full object-cover grayscale">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="relative py-24 md:py-32 bg-bgSecondary overflow-hidden">
+        <!-- Hidden Interactive Stickers (Revealed via JS) -->
+        <img id="sticker-fashion" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fashion" class="sticker-tooltip">
+        <img id="sticker-reading" src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Reading" class="sticker-tooltip">
+        <img id="sticker-music" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Music" class="sticker-tooltip">
+        <img id="sticker-movies" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Movies" class="sticker-tooltip">
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row gap-16 items-center">
+
+            <!-- Left: Ruled Paper Content -->
+            <div class="w-full lg:w-[55%] relative group z-20">
+                <!-- Washi tape -->
+                <div
+                    class="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-washiMint opacity-80 transform -rotate-2 z-30 shadow-sm mix-blend-multiply transition-transform duration-500 group-hover:rotate-1">
+                </div>
+
+                <div
+                    class="bg-paper p-10 md:p-14 shadow-paper relative transform -rotate-1 rounded-sm border border-black/5 transition-transform duration-700 hover:rotate-0 hover:shadow-deep bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJsaW5lcyIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDQwIEwgMTAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlN2U3ZTciIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNsaW5lcykiLz48L3N2Zz4=')]">
+
+                    <h2
+                        class="font-serif text-4xl md:text-5xl font-semibold mb-8 md:mb-10 text-ink relative inline-block">
+                        A little about me
+                        <div class="absolute -bottom-2 left-0 w-full h-1 bg-accent/20"></div>
+                    </h2>
+
+                    <div class="space-y-6 md:space-y-8 font-sans text-[17px] text-inkLight leading-[2.2]">
+                        <p class="relative z-10">
+                            I'm a curious UI/UX Designer who believes great design starts with understanding people. My
+                            approach begins with asking the right questions, exploring user needs, and identifying
+                            problems before creating solutions.
+                        </p>
+                        <p class="relative z-10">
+                            When I'm not designing, you'll find me exploring
+                            <span class="interactive-word drawn-underline font-medium text-ink" data-target="sticker-fashion" onmouseenter="playPop()">fashion inspiration</span>,
+                            getting lost in
+                            <span class="interactive-word drawn-underline font-medium text-ink" data-target="sticker-reading" onmouseenter="playPop()">reading</span>,
+                            listening to
+                            <span class="interactive-word drawn-underline font-medium text-ink" data-target="sticker-music" onmouseenter="playPop()">music</span>,
+                            or discovering stories through
+                            <span class="interactive-word drawn-underline font-medium text-ink" data-target="sticker-movies" onmouseenter="playPop()">movies and series</span>.
+                        </p>
+                        <p class="relative z-10">
+                            I enjoy combining user insights with clean visual design to create products that feel
+                            simple, intuitive, and purposeful.
+                        </p>
+                    </div>
+
+                    <!-- Interactive Doodles that appear on hover -->
+                    <div
+                        class="absolute bottom-6 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 pointer-events-none">
+                        <svg width="40" height="40" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 10 C 60 40 90 50 60 60 C 50 90 40 60 10 50 C 40 40 50 10 50 10"
+                                stroke="#B53336" stroke-width="3" stroke-linejoin="round" fill="none" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: The Interactive Desk -->
+            <div
+                class="w-full lg:w-[45%] relative min-h-[500px] flex items-center justify-center pointer-events-none mt-10 lg:mt-0">
+
+                <!-- The Cassette Tape (Audio Interaction) -->
+                <div class="absolute top-4 right-4 md:right-10 z-30 pointer-events-auto transform rotate-12 cassette cursor-pointer group"
+                    onmouseenter="playChime()">
+                    <!-- SVG Cassette -->
+                    <div
+                        class="relative bg-white p-2 rounded-md shadow-sticky border border-gray-200 transition-all duration-300 group-hover:-translate-y-2 group-hover:rotate-[-6deg] group-hover:shadow-polaroid">
+                        <div
+                            class="w-32 h-20 bg-gray-100 rounded border border-gray-300 flex items-center justify-center relative overflow-hidden">
+                            <!-- Label -->
+                            <div
+                                class="absolute inset-x-2 top-2 bottom-2 bg-tapeMint/40 rounded-sm border border-black/10 flex flex-col items-center pt-1">
+                                <span class="font-hand text-[10px] text-ink font-bold">Mix Vol. 1</span>
+                                <div class="w-full h-px bg-black/10 my-1"></div>
+                                <!-- Reels -->
+                                <div class="flex gap-4 mt-1">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center cassette-reel">
+                                        <div class="w-2 h-2 rounded-full bg-white"></div>
+                                        <div class="absolute w-full h-0.5 bg-white/30 transform rotate-45"></div>
+                                        <div class="absolute w-full h-0.5 bg-white/30 transform -rotate-45"></div>
+                                    </div>
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center cassette-reel">
+                                        <div class="w-2 h-2 rounded-full bg-white"></div>
+                                        <div class="absolute w-full h-0.5 bg-white/30 transform rotate-45"></div>
+                                        <div class="absolute w-full h-0.5 bg-white/30 transform -rotate-45"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tooltip -->
+                        <div
+                            class="absolute -top-10 left-1/2 -translate-x-1/2 bg-ink text-white text-[11px] font-sans px-3 py-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                            Hover for vibes 🎵
+                            <div
+                                class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-ink transform rotate-45">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Background Polaroid (Static) -->
+                <div
+                    class="absolute left-2 md:left-4 bottom-12 w-48 transform -rotate-12 opacity-80 blur-[1px] shadow-polaroid bg-white p-2 pb-8 z-10 pointer-events-auto transition-all duration-500 hover:blur-none hover:opacity-100 hover:z-40">
+                    <div class="aspect-square bg-gray-200 overflow-hidden border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Workspace" class="w-full h-full object-cover grayscale">
+                    </div>
+                </div>
+
+                <!-- Foreground Magic Polaroid (Hover Swap) -->
+                <div class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-56 transform rotate-6 z-20 pointer-events-auto magic-polaroid shadow-polaroid bg-white p-3 pb-10 cursor-crosshair transition-transform duration-500 hover:rotate-2 hover:scale-105"
+                    onmouseenter="playShutter()">
+
+                    <!-- Tape -->
+                    <div
+                        class="absolute -top-3 left-8 w-16 h-5 bg-washiPeach opacity-90 transform -rotate-6 z-30 mix-blend-multiply">
+                    </div>
+
+                    <div class="aspect-[4/5] relative bg-gray-200 overflow-hidden border border-gray-100">
+                        <!-- Back Image (Candid / Fun) -->
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Candid Nisha" class="absolute inset-0 w-full h-full object-cover back-img z-10">
+
+                        <!-- Front Image (Professional) -->
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Professional Nisha" class="absolute inset-0 w-full h-full object-cover front-img z-20">
+                    </div>
+
+                    <div class="absolute bottom-2 left-0 w-full text-center z-30">
+                        <p class="font-hand text-lg text-inkLight flex items-center justify-center gap-2">
+                            Hover to reveal <span class="text-accent text-sm">✨</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Floating Sticky Note -->
+                <div
+                    class="absolute -bottom-10 right-10 md:right-24 bg-stickyYellow p-4 w-40 shadow-sticky transform -rotate-6 z-30 pointer-events-auto transition-all duration-500 hover:-translate-y-3 hover:rotate-0 hover:shadow-polaroid cursor-grab">
+                    <div class="w-2 h-2 rounded-full bg-accent/30 mb-2 shadow-inner mx-auto"></div>
+                    <p class="font-hand text-xl text-ink leading-tight text-center">Design is how it works.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="relative py-24 md:py-32 bg-bgPrimary overflow-hidden">
+
+        <!-- Decorative Background Element -->
+        <div
+            class="absolute right-[-10%] top-[10%] w-[40vw] max-w-[500px] aspect-square bg-tapePeach/20 rounded-full mix-blend-multiply filter blur-[80px] pointer-events-none z-0">
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+
+            <!-- Section Header -->
+            <div class="mb-16 md:mb-24 text-center md:text-left relative">
+                <h2
+                    class="font-serif text-4xl md:text-5xl font-semibold tracking-tight text-ink relative inline-block z-10">
+                    Process? Yeah... I have one.
+                    <!-- Decorative line -->
+                    <div class="absolute -bottom-3 left-0 w-32 h-1 bg-accent/20 hidden md:block"></div>
+                </h2>
+                <p class="font-sans text-lg md:text-xl font-light text-inkLight mt-5 max-w-2xl leading-relaxed">
+                    A logical approach to turning ambiguity into functional, human-centered digital experiences.
+                </p>
+            </div>
+
+            <!-- Process Grid (Staggered for organic flow) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-12 md:gap-y-6 relative mb-24">
+
+                <!-- Subtle background connection line (Desktop) -->
+                <div
+                    class="absolute top-1/2 left-[10%] right-[10%] h-px border-t-2 border-dashed border-inkLight/10 hidden md:block z-0 transform -translate-y-1/2">
+                </div>
+                <div
+                    class="absolute top-[20%] bottom-[20%] left-1/2 w-px border-l-2 border-dashed border-inkLight/10 hidden md:block z-0 transform -translate-x-1/2">
+                </div>
+
+                <!-- Step 1 -->
+                <div
+                    class="relative bg-paper p-8 md:p-10 rounded-sm shadow-soft border border-black/5 group hover:shadow-deep transition-all duration-400 z-10 md:mt-0">
+                    <div
+                        class="absolute -top-3 left-8 w-16 h-5 bg-washiMint opacity-80 transform -rotate-2 mix-blend-multiply shadow-sm z-20">
+                    </div>
+
+                    <!-- Large Number Anchor -->
+                    <span class="absolute top-4 right-6 font-serif text-[80px] leading-none text-ink/5 group-hover:text-accent/10 transition-colors duration-500 pointer-events-none">1</span>
+
+                    <h3
+                        class="font-sans font-bold text-lg text-ink mb-3 relative z-10 group-hover:text-accent transition-colors">
+                        Discover & Align</h3>
+                    <p class="font-sans text-[15px] text-inkLight leading-[1.8] relative z-10">
+                        I break down the problem, not just the brief. Aligning business goals, user needs, and technical
+                        constraints early sets a clear, actionable direction.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div
+                    class="relative bg-paper p-8 md:p-10 rounded-sm shadow-soft border border-black/5 group hover:shadow-deep transition-all duration-400 z-10 md:mt-16">
+                    <div
+                        class="absolute -top-3 right-8 w-20 h-5 bg-washiLavender opacity-70 transform rotate-3 mix-blend-multiply shadow-sm z-20">
+                    </div>
+
+                    <span class="absolute top-4 right-6 font-serif text-[80px] leading-none text-ink/5 group-hover:text-accent/10 transition-colors duration-500 pointer-events-none">2</span>
+
+                    <h3
+                        class="font-sans font-bold text-lg text-ink mb-3 relative z-10 group-hover:text-accent transition-colors">
+                        Research & Explore</h3>
+                    <p class="font-sans text-[15px] text-inkLight leading-[1.8] relative z-10">
+                        I dive into user behavior, data, and established patterns to uncover insights that actually
+                        drive design decisions—not just validate assumptions.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div
+                    class="relative bg-paper p-8 md:p-10 rounded-sm shadow-soft border border-black/5 group hover:shadow-deep transition-all duration-400 z-10 md:mt-0">
+                    <div
+                        class="absolute -bottom-3 left-10 w-16 h-5 bg-washiPeach opacity-80 transform rotate-2 mix-blend-multiply shadow-sm z-20">
+                    </div>
+
+                    <span class="absolute top-4 right-6 font-serif text-[80px] leading-none text-ink/5 group-hover:text-accent/10 transition-colors duration-500 pointer-events-none">3</span>
+
+                    <h3
+                        class="font-sans font-bold text-lg text-ink mb-3 relative z-10 group-hover:text-accent transition-colors">
+                        Design & Iterate</h3>
+                    <p class="font-sans text-[15px] text-inkLight leading-[1.8] relative z-10">
+                        I design with intent, prototype rapidly, and refine based on continuous feedback. The focus is
+                        always on clarity, usability, and measurable impact.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div
+                    class="relative bg-paper p-8 md:p-10 rounded-sm shadow-soft border border-black/5 group hover:shadow-deep transition-all duration-400 z-10 md:mt-16">
+                    <div
+                        class="absolute top-1/2 -right-4 w-12 h-5 bg-washiMint opacity-80 transform -rotate-12 mix-blend-multiply shadow-sm z-20">
+                    </div>
+
+                    <span class="absolute top-4 right-6 font-serif text-[80px] leading-none text-ink/5 group-hover:text-accent/10 transition-colors duration-500 pointer-events-none">4</span>
+
+                    <h3
+                        class="font-sans font-bold text-lg text-ink mb-3 relative z-10 group-hover:text-accent transition-colors">
+                        Execute & Optimize</h3>
+                    <p class="font-sans text-[15px] text-inkLight leading-[1.8] relative z-10">
+                        I collaborate closely with developers to ensure a flawless handoff, then track live performance
+                        to optimize and refine key user flows post-launch.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- The Toolkit Drawer -->
+            <div class="relative mt-12 border-t border-dashed border-inkLight/20 pt-16">
+
+                <div class="flex flex-col md:flex-row gap-8 items-start md:items-center">
+
+                    <div class="md:w-1/3">
+                        <h3 class="font-serif text-3xl font-semibold text-ink mb-2">Creative Toolkit</h3>
+                        <p class="font-hand text-lg text-inkLight transform -rotate-1">The tools of the trade.</p>
+                    </div>
+
+                    <!-- Tactile "Stamps" / Labels for Tools -->
+                    <div class="md:w-2/3 flex flex-wrap gap-3 md:gap-4">
+
+                        <!-- Tool 1 -->
+                        <div
+                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
+                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">Fg</span>
+                            <span class="font-sans text-[14px] font-medium text-ink">Figma</span>
+                        </div>
+
+                        <!-- Tool 2 -->
+                        <div
+                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
+                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">Wf</span>
+                            <span class="font-sans text-[14px] font-medium text-ink">Webflow</span>
+                        </div>
+
+                        <!-- Tool 3 -->
+                        <div
+                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
+                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">Ai</span>
+                            <span class="font-sans text-[14px] font-medium text-ink">ChatGPT / Claude</span>
+                        </div>
+
+                        <!-- Tool 4 -->
+                        <div
+                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
+                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">No</span>
+                            <span class="font-sans text-[14px] font-medium text-ink">Notion</span>
+                        </div>
+
+                        <!-- Tool 5 -->
+                        <div
+                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
+                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">Fr</span>
+                            <span class="font-sans text-[14px] font-medium text-ink">Framer</span>
+                        </div>
+
+                        <!-- Tool 6 -->
+                        <div
+                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
+                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">Ps</span>
+                            <span class="font-sans text-[14px] font-medium text-ink">Photoshop</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Unified Footer & CTA Section -->
+    <footer id="contact" class="relative pt-24 md:pt-32 pb-8 md:pb-12 bg-bgPrimary">
+        <div class="max-w-6xl mx-auto px-6">
+
+            <!-- Top Grid: Mission and Links (The new integrated CTA) -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16 md:mb-24 items-start">
+
+                <!-- Left: Mission Statement -->
+                <div class="col-span-1 md:col-span-6 lg:col-span-6">
+                    <p class="font-sans text-xl text-inkLight leading-relaxed max-w-sm">
+                        Crafting digital environments rooted in user empathy, logical architecture, and intentional
+                        visual restraint.
+                    </p>
+                </div>
+
+                <!-- Right: Information Architecture (Inquiries & Connect) -->
+                <div
+                    class="col-span-1 md:col-span-6 lg:col-span-6 flex flex-col sm:flex-row gap-12 sm:gap-24 md:justify-end">
+
+                    <!-- Inquiries Column -->
+                    <div>
+                        <h4 class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-inkLight mb-6">
+                            Inquiries</h4>
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="mailto:hello@nisha.com"
+                                    class="font-sans text-[16px] text-ink hover:text-accent transition-colors font-medium">hello@nisha.com</a>
+                            </li>
+                            <li class="font-sans text-[16px] text-inkLight font-medium">
+                                +91 98765 43210
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Connect Column -->
+                    <div>
+                        <h4 class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-inkLight mb-6">
+                            Connect</h4>
+                        <ul class="space-y-4">
+                            <li><a href="#"
+                                    class="font-sans text-[16px] text-ink hover:text-accent transition-colors font-medium">LinkedIn</a>
+                            </li>
+                            <li><a href="#"
+                                    class="font-sans text-[16px] text-ink hover:text-accent transition-colors font-medium">Dribbble</a>
+                            </li>
+                            <li><a href="#"
+                                    class="font-sans text-[16px] text-ink hover:text-accent transition-colors font-medium">Read.cv</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delicate Divider -->
+            <div class="w-full h-px bg-black/10 mb-10 md:mb-16"></div>
+
+            <!-- Bottom Typographic Anchor & Legal -->
+            <div class="flex flex-col md:flex-row items-end justify-between gap-10">
+
+                <!-- Massive Typographic Brand -->
+                <div class="relative">
+                    <h2
+                        class="font-serif text-[70px] md:text-[90px] lg:text-[110px] leading-[0.8] text-ink font-semibold tracking-tight -ml-1">
+                        Nisha.
+                    </h2>
+                    <!-- Signature Accent -->
+                    <span class="absolute -top-6 -right-6 md:-top-4 md:-right-12 font-hand text-2xl text-accent transform rotate-[-6deg]">Thank you!</span>
+                </div>
+
+                <!-- Legal/Copyright Links -->
+                <div class="flex flex-wrap items-center gap-6 font-sans text-[13px] text-inkLight font-medium pb-2">
+                    <span>&copy; 2026 Nisha Thakur</span>
+                    <a href="#" class="hover:text-ink transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-ink transition-colors">Resume</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Interactive Script for Audio & Tooltips -->
+    <script>
+        // --- WEB AUDIO API SYSTEM ---
+        let audioCtx = null;
+
+        // Initialize audio safely after user interaction
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Attach to document to unlock audio early
+        document.addEventListener('click', initAudio, { once: true });
+        document.addEventListener('mouseover', initAudio, { once: true });
+        document.addEventListener('touchstart', initAudio, { once: true });
+
+        // Synthesize a soft "Pop" for text hover
+        function playPop() {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(700, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1);
+            
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        // Synthesize a "Camera Shutter / Paper Slide" for Polaroid hover
+        function playShutter() {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(100, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.05);
+            
+            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.05);
+        }
+
+        // Synthesize a gentle "Chime" for the Cassette Tape
+        function playChime() {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5 Note
+            
+            gain.gain.setValueAtTime(0, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime + 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.2);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 1.2);
+        }
+
+        // --- INTERACTIVE WORD TOOLTIPS (STICKERS) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const interactiveWords = document.querySelectorAll('.interactive-word');
+            
+            interactiveWords.forEach(word => {
+                const targetId = word.getAttribute('data-target');
+                const sticker = document.getElementById(targetId);
+                
+                if(!sticker) return;
+
+                word.addEventListener('mouseenter', () => {
+                    sticker.classList.add('active');
+                });
+                
+                word.addEventListener('mouseleave', () => {
+                    sticker.classList.remove('active');
+                });
+                
+                word.addEventListener('mousemove', (e) => {
+                    // Offset slightly from cursor
+                    const x = e.clientX + 25; 
+                    const y = e.clientY + 25;
+                    
+                    // Add slight dynamic rotation based on cursor position
+                    const rotate = (e.clientX % 20) - 10;
+                    
+                    sticker.style.left = `${x}px`;
+                    sticker.style.top = `${y}px`;
+                    
+                    if(sticker.classList.contains('active')){
+                         sticker.style.transform = `translate(-50%, -50%) scale(1) rotate(${rotate}deg)`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
