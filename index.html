@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Manrope:wght@400;500;600;700&family=Satisfy&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Manrope:wght@400;500;600;700&family=Satisfy&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
 
     <!-- Tailwind CSS -->
@@ -20,12 +20,12 @@
             theme: {
                 extend: {
                     colors: {
-                        bgPrimary: '#F4F1EB', // Cream from reference
+                        bgPrimary: '#F4F1EB', 
                         bgSecondary: '#EBE6DF',
-                        brandBlue: '#6385A6', // Denim blue from reference
-                        textMain: '#2C3033', // Deep slate
+                        brandBlue: '#6385A6', 
+                        textMain: '#2C3033', 
                         textMuted: '#6B7A8B',
-                        accent: '#B53336', // Cherry red from reference
+                        accent: '#B53336', 
                         accentHover: '#96282B',
                         stickyYellow: '#F1EBD6',
                         stickyBlue: '#DFE8EF',
@@ -43,12 +43,13 @@
                         serif: ['"Cormorant Garamond"', 'serif'],
                         sans: ['Manrope', 'sans-serif'],
                         hand: ['Satisfy', 'cursive'],
+                        mono: ['"Space Mono"', 'monospace'],
                     },
                     boxShadow: {
-                        'soft': '0 4px 20px rgba(150, 150, 150, 0.1)',
-                        'deep': '0 10px 30px rgba(150, 150, 150, 0.15), 0 0 0 1px rgba(150, 150, 150, 0.05)',
-                        'polaroid': '0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.05)',
-                        'sticky': '2px 4px 10px rgba(0,0,0,0.06)'
+                        /* Unified Premium Shadows */
+                        'ui': '0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0,0,0,0.02)',
+                        'ui-hover': '0 12px 30px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0,0,0,0.03)',
+                        'ui-inner': 'inset 0 2px 4px rgba(0,0,0,0.02)'
                     }
                 }
             }
@@ -62,78 +63,32 @@
             overflow-x: hidden;
         }
 
-        /* Nav Pill effect */
-        .nav-pill {
-            background: #F4F1EB;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 4px 20px rgba(150, 150, 150, 0.1);
-        }
-
-        /* New Polaroid Styling (Cleaner) */
-        .polaroid-frame {
-            background: white;
-            padding: 10px 10px 35px 10px;
-            box-shadow: var(--tw-shadow-polaroid);
-            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s;
-            position: absolute;
+        /* Unified UI Frame interactions */
+        .ui-card {
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, z-index 0s;
             transform-origin: center center;
-            border-radius: 4px;
         }
 
-        .polaroid-frame:hover {
-            transform: scale(1.05) translateY(-5px) !important;
+        .ui-card:hover {
+            /* Updated to preserve Tailwind rotation variable and prevent snapping */
+            transform: scale(1.02) translateY(-4px) rotate(var(--tw-rotate, 0deg)) !important;
             z-index: 50 !important;
         }
 
-        /* Sticky Notes styling */
-        .sticky-note {
-            padding: 1.25rem;
-            box-shadow: var(--tw-shadow-sticky);
-            position: absolute;
-            transition: transform 0.3s ease;
-            border-radius: 2px;
+        /* Nav Pill effect */
+        .nav-pill {
+            background: #F4F1EB;
+            backdrop-filter: blur(10px);
         }
 
-        /* Typography overrides for Cormorant Garamond */
+        /* Typography overrides */
         .font-serif {
             letter-spacing: -0.01em;
-        }
-
-        /* Chat Bubbles */
-        .chat-bubble {
-            padding: 12px 18px;
-            border-radius: 18px;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            max-width: 220px;
-            box-shadow: var(--tw-shadow-soft);
-            position: absolute;
-            font-family: 'Manrope', sans-serif;
-            font-weight: 500;
-        }
-
-        .chat-bubble-gray {
-            background: white;
-            color: #6B7A8B;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-bottom-left-radius: 4px;
-        }
-
-        .chat-bubble-pink {
-            background: #B53336;
-            color: white;
-            border-bottom-right-radius: 4px;
         }
 
         ::selection {
             background-color: #B53336;
             color: white;
-        }
-
-        /* Utility to preserve rotation during hover */
-        .preserve-3d:hover {
-            transform: scale(1.05) rotate(0deg) !important;
-            z-index: 50 !important;
         }
 
         .bg-grid-pattern {
@@ -166,7 +121,7 @@
             opacity: 0.7;
         }
 
-        /* --- NEW ABOUT SECTION INTERACTIONS --- */
+        /* --- ABOUT SECTION INTERACTIONS --- */
         .interactive-word {
             position: relative;
             cursor: pointer;
@@ -178,7 +133,7 @@
             color: #B53336;
         }
 
-        /* Floating Tooltip Stickers */
+        /* Floating Tooltip Stickers - Updated to match design system */
         .sticker-tooltip {
             position: fixed;
             pointer-events: none;
@@ -186,20 +141,18 @@
             opacity: 0;
             transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
             transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: var(--tw-shadow-polaroid);
-            border: 5px solid white;
-            border-bottom-width: 15px;
-            /* Polaroid feel */
-            border-radius: 2px;
-            width: 150px;
+            box-shadow: var(--tw-shadow-ui);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            width: 160px;
             height: 160px;
             object-fit: cover;
             background: white;
+            padding: 8px;
         }
 
         .sticker-tooltip.active {
             opacity: 1;
-            /* Transform is actively controlled by JS for rotation */
         }
 
         /* Magic Polaroid Image Swap */
@@ -232,15 +185,69 @@
         .cassette:hover .cassette-reel {
             transform: rotate(360deg);
         }
+
+        /* --- WORKSPACE THEME DETAILS --- */
+        .label-maker {
+            background-color: #2C3033;
+            color: #FDFCF9;
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            font-size: 10.5px;
+            letter-spacing: 0.15em;
+            padding: 4px 10px;
+            box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.4);
+            position: relative;
+            display: inline-block;
+        }
+
+        .stamp {
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            padding: 4px 12px;
+            border: 2px solid;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            mix-blend-mode: multiply;
+        }
+
+        .stamp-shipped {
+            color: #B53336;
+            border-color: #B53336;
+            transform: rotate(-5deg);
+        }
+
+        .thumbtack {
+            background: radial-gradient(circle at 30% 30%, #f3f4f6, #9ca3af);
+            box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #6b7280;
+            position: relative;
+        }
+
+        .thumbtack::after {
+            content: '';
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            width: 20%;
+            height: 20%;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
     </style>
 </head>
 
 <body class="antialiased relative font-sans text-textMain">
 
+    <!-- Nav updated to 12px radius, 1px border, ui shadow -->
     <nav
-        class="fixed top-6 left-1/2 -translate-x-1/2 z-50 p-2.5 rounded-full nav-pill flex items-center justify-between w-[92%] max-w-[850px] transition-all duration-300">
+        class="fixed top-6 left-1/2 -translate-x-1/2 z-50 p-2 rounded-[12px] nav-pill flex items-center justify-between w-[92%] max-w-[850px] transition-all duration-300 border border-black/5 shadow-ui">
 
-        <!-- Logo Area (Flex-1 ensures balance) -->
+        <!-- Logo Area -->
         <div class="flex-1 flex justify-start pl-5 md:pl-6">
             <a href="#home"
                 class="font-serif font-semibold text-[26px] tracking-tight text-ink flex items-center leading-none">
@@ -248,7 +255,7 @@
             </a>
         </div>
 
-        <!-- Desktop Links (Strictly Centered with increased breathing room) -->
+        <!-- Desktop Links -->
         <div
             class="hidden md:flex flex-none items-center gap-10 lg:gap-12 text-[15px] font-medium text-textMuted tracking-wide">
             <a href="#work" class="hover:text-ink transition-colors">Work</a>
@@ -256,10 +263,10 @@
             <a href="#about" class="hover:text-ink transition-colors">About</a>
         </div>
 
-        <!-- Action Button (Flex-1 ensures balance) -->
-        <div class="flex-1 flex items-center justify-end pr-1">
-            <a href="#"
-                class="flex items-center justify-center px-7 py-2.5 rounded-full bg-accent text-white text-[15px] font-medium hover:bg-accentHover transition-colors duration-300 shadow-sm whitespace-nowrap">
+        <!-- Action Button updated to 12px radius -->
+        <div class="flex-1 flex items-center justify-end">
+            <a href="https://drive.google.com/file/d/1oJ4603qC5KtAtqaaD56DQ3ENs1xwwiuk/view" target="_blank"
+                class="flex items-center justify-center px-7 py-2.5 rounded-[12px] bg-accent text-white text-[15px] font-medium hover:bg-accentHover transition-colors duration-300 shadow-sm whitespace-nowrap">
                 Resume
             </a>
         </div>
@@ -271,19 +278,11 @@
         <!-- Decorative Asset: Noise Texture Overlay -->
         <div class="absolute inset-0 w-full h-full bg-noise pointer-events-none z-0"></div>
 
-        <!-- Decorative Asset: Soft Ambient Glows -->
-        <div
-            class="absolute top-[15%] left-[20%] w-[45vw] max-w-[600px] aspect-square bg-stickyPink/40 rounded-full mix-blend-multiply filter blur-[90px] pointer-events-none z-0">
-        </div>
-        <div
-            class="absolute bottom-[10%] right-[15%] w-[40vw] max-w-[500px] aspect-square bg-tapeMint/30 rounded-full mix-blend-multiply filter blur-[90px] pointer-events-none z-0">
-        </div>
-
         <!-- THE FRAME: Structured, Balanced Moodboard (Desktop) -->
         <div class="absolute inset-0 w-full h-full max-w-[1440px] mx-auto z-10 pointer-events-none hidden xl:block">
 
-            <!-- Decorative Asset: Hand-drawn Connecting Arrow -->
-            <div class="absolute top-[32%] left-[24%] transform rotate-12 opacity-30 z-10">
+            <!-- Subtle Connector Arrow from Toolkit to Center -->
+            <div class="absolute top-[32%] left-[26%] transform rotate-6 opacity-30 z-10">
                 <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 90 Q 30 20 85 25" stroke="#2C3033" stroke-width="2" stroke-linecap="round"
                         stroke-dasharray="4 6" />
@@ -292,133 +291,121 @@
                 </svg>
             </div>
 
-            <!-- Decorative Asset: Subtle Dot Grid Accent -->
-            <div class="absolute bottom-[28%] right-[26%] opacity-20 z-10">
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <pattern id="dots" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
-                        <circle cx="2" cy="2" r="1.5" fill="#2C3033" />
-                    </pattern>
-                    <rect width="60" height="60" fill="url(#dots)" />
-                </svg>
-            </div>
-
             <!-- Top Left: Handwritten List Note -->
-            <div
-                class="absolute top-[22%] left-[6%] transform -rotate-2 hover:rotate-0 transition-transform duration-500 pointer-events-auto">
+            <div class="absolute top-[18%] left-[8%] transform -rotate-2 ui-card pointer-events-auto">
                 <div
-                    class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-5 bg-washiMint opacity-80 z-20 transform rotate-1 shadow-sm mix-blend-multiply">
+                    class="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-tapeMint rounded-[4px] opacity-80 z-20 transform rotate-1 mix-blend-multiply shadow-sm">
                 </div>
-                <div class="bg-paper p-6 shadow-sticky w-[220px] rounded-sm border border-black/5 relative">
-                    <h3 class="font-hand text-2xl text-accent mb-3 border-b border-gray-100 pb-2">My toolkit</h3>
-                    <ul class="font-sans text-[14px] font-medium space-y-2.5 text-inkLight">
+                <div class="bg-paper p-8 shadow-ui w-[240px] rounded-[12px] border border-black/5 relative">
+                    <h3 class="font-hand text-2xl text-accent mb-4 border-b border-black/5 pb-3">My toolkit</h3>
+                    <ul class="font-sans text-[14.5px] font-medium space-y-3 text-inkLight">
                         <li>User Research</li>
                         <li>Product Strategy</li>
                         <li>Wireframing</li>
                         <li>Design Systems</li>
                     </ul>
-                    <!-- Decorative Asset: Secondary Tape -->
-                    <div
-                        class="absolute -bottom-2 right-4 w-12 h-4 bg-washiLavender opacity-70 z-20 transform -rotate-3 shadow-sm mix-blend-multiply">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Top Right: Aesthetic Photo Polaroid -->
-            <div
-                class="absolute top-[25%] right-[8%] transform rotate-4 hover:rotate-1 transition-transform duration-500 pointer-events-auto">
-                <!-- Decorative Asset: Squiggle Graphic -->
-                <div class="absolute -top-6 -left-12 z-0 opacity-40">
-                    <svg width="70" height="40" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 25 Q 20 5 35 25 T 65 25 T 95 25" stroke="#B53336" stroke-width="3"
-                            stroke-linecap="round" fill="none" />
-                    </svg>
-                </div>
-                <div
-                    class="absolute -top-3 -right-2 w-12 h-5 bg-washiPeach opacity-80 z-20 transform rotate-12 shadow-sm mix-blend-multiply">
-                </div>
-                <div class="bg-white p-3 pb-8 shadow-polaroid rounded-sm w-[180px]">
-                    <div class="aspect-square bg-gray-100 overflow-hidden relative border border-gray-100">
-                        <img src="https://images.unsplash.com/photo-1507133750073-162985172288?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Design inspiration" class="w-full h-full object-cover">
-                    </div>
                 </div>
             </div>
 
             <!-- Bottom Left: Simple Quote Card -->
-            <div
-                class="absolute bottom-[20%] left-[10%] transform rotate-3 hover:rotate-0 transition-transform duration-500 pointer-events-auto z-20">
-                <!-- Decorative Asset: Paperclip Overlay -->
-                <div class="absolute -top-5 -left-1 z-30 transform -rotate-12 drop-shadow-sm opacity-90">
-                    <svg width="28" height="42" viewBox="0 0 24 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="absolute bottom-[20%] left-[12%] transform rotate-2 ui-card pointer-events-auto z-20">
+                <div class="absolute -top-4 -left-2 z-30 transform -rotate-6 drop-shadow-sm opacity-90">
+                    <svg width="24" height="42" viewBox="0 0 24 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M14 6V36C14 39.3137 11.3137 42 8 42C4.68629 42 2 39.3137 2 36V12C2 9.79086 3.79086 8 6 8C8.20914 8 10 9.79086 10 12V34C10 35.1046 9.10457 36 8 36C6.89543 36 6 35.1046 6 34V14"
-                            stroke="#6B7A8B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
                 <div
-                    class="bg-stickyYellow p-5 shadow-sticky w-[200px] rounded-sm border border-black/5 flex flex-col items-center">
-                    <div class="w-3 h-3 rounded-full bg-accent/30 mb-3 shadow-inner"></div>
-                    <p class="font-hand text-xl text-ink leading-tight text-center">"Good design should feel a little
-                        human."</p>
+                    class="bg-stickyYellow p-7 shadow-ui w-[220px] rounded-[12px] border border-black/5 flex flex-col items-center">
+                    <div class="w-2.5 h-2.5 rounded-full bg-accent/30 mb-3 shadow-inner"></div>
+                    <p class="font-hand text-[19px] text-ink leading-tight text-center">"Good design should feel a
+                        little human."</p>
                 </div>
             </div>
 
-            <!-- Bottom Right: Main Portrait Polaroid -->
+            <!-- Right Center: Refined Designer Profile Card (Fixed positioning and hover) -->
             <div
-                class="absolute bottom-[15%] right-[10%] transform -rotate-3 hover:rotate-0 transition-transform duration-500 pointer-events-auto z-20">
+                class="absolute top-[48%] right-[8%] transform -translate-y-1/2 pointer-events-auto z-20 group/profile">
+                <!-- Main Card (Separated from transform wrapper to preserve centering) -->
                 <div
-                    class="absolute -top-2 left-6 w-14 h-5 bg-washiMint opacity-80 z-20 transform -rotate-6 shadow-sm mix-blend-multiply">
-                </div>
-                <div class="bg-white p-3 pb-10 shadow-polaroid rounded-sm w-[200px] relative">
-                    <div class="aspect-[4/5] bg-gray-200 overflow-hidden border border-gray-100">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nisha Thakur" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                    class="bg-paper p-4 shadow-ui hover:shadow-ui-hover border border-black/5 rounded-[12px] w-[250px] relative z-10 transform -rotate-1 hover:scale-[1.02] transition-all duration-500 ease-out">
+                    <!-- Provided Binder Clip -->
+                    <img src="https://www.diwyanivajpayee.in/clamp.png" alt="Binder Clip" class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-8 z-30 drop-shadow-md">
+
+                    <!-- Photo with subtle zoom -->
+                    <div
+                        class="aspect-[4/5] bg-bgSecondary overflow-hidden rounded-[8px] mb-5 mt-2.5 border border-black/5 relative z-10">
+                        <img src="https://i.ibb.co/WWH5mqDW/hero.webp" alt="Nisha Thakur" class="w-full h-full object-cover grayscale-[15%] transition-transform duration-700 ease-out group-hover/profile:scale-105">
                     </div>
-                    <p class="font-hand text-lg text-inkLight text-center mt-2 absolute bottom-2 w-full left-0">That's
-                        me!</p>
+
+                    <!-- Content Area -->
+                    <div class="px-2 relative z-10">
+                        <h4 class="font-serif text-[20px] font-medium text-brandBlue mb-4 tracking-tight text-center">
+                            Designer Profile</h4>
+
+                        <div class="space-y-3 font-sans text-[12px]">
+                            <!-- Dotted Row 1 -->
+                            <div class="flex justify-between items-end pb-1.5 border-b border-dotted border-black/20">
+                                <span class="text-inkLight">Name</span>
+                                <span class="font-medium text-ink">Nisha Thakur</span>
+                            </div>
+                            <!-- Dotted Row 2 -->
+                            <div class="flex justify-between items-end pb-1.5 border-b border-dotted border-black/20">
+                                <span class="text-inkLight">Role</span>
+                                <span class="font-medium text-ink">UX/UI Designer</span>
+                            </div>
+                            <!-- Dotted Row 3 (No border) -->
+                            <div class="flex justify-between items-end pb-1">
+                                <span class="text-inkLight">Focus</span>
+                                <span class="font-medium text-ink">Systems & Strategy</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- THE SACRED CENTER: Clear Typography & Core Message -->
+        <!-- THE SACRED CENTER -->
         <div
-            class="relative z-30 max-w-4xl mx-auto px-6 text-center flex flex-col items-center pointer-events-auto mt-20 xl:mt-0">
+            class="relative z-30 max-w-4xl mx-auto px-6 text-center flex flex-col items-center pointer-events-auto mt-16 xl:mt-0">
 
-            <!-- Decorative Asset: Hand-drawn Sparkle -->
+            <!-- Hand-drawn annotation pointing to title -->
             <div
-                class="absolute top-0 right-[25%] sm:right-[35%] md:right-[38%] text-accent/50 w-7 h-7 transform rotate-12 hidden sm:block">
-                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M12 0C12 6.62742 16.3726 10.6274 23 10.6274C16.3726 10.6274 12 14.6274 12 21.2548C12 14.6274 7.62742 10.6274 1 10.6274C7.62742 10.6274 12 6.62742 12 0Z" />
+                class="absolute -top-8 left-[10%] sm:left-[22%] text-accent w-32 hidden sm:flex flex-col items-start transform -rotate-6 z-20">
+                <span class="font-hand text-lg mb-1 ml-4">Core focus</span>
+                <svg width="40" height="40" viewBox="0 0 100 100" fill="none"
+                    class="transform scale-x-[-1] rotate-[60deg]">
+                    <path d="M10 90 Q 30 20 85 25" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <path d="M72 13 L 88 25 L 70 38" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
                 </svg>
             </div>
 
-            <!-- Eyebrow (Name) -->
             <h2 class="font-hand text-[32px] md:text-[40px] text-inkLight mb-4 transform -rotate-2 relative z-10">
                 Nisha Thakur
             </h2>
 
-            <!-- Main Headline (Aligned exactly to reference: 3 lines) -->
             <h1
-                class="font-serif text-[38px] md:text-[46px] lg:text-[54px] text-accent leading-[1.2] mb-8 md:mb-10 tracking-tight max-w-[800px] mx-auto font-medium">
+                class="font-serif text-[38px] md:text-[46px] lg:text-[54px] text-accent leading-[1.2] mb-8 md:mb-10 tracking-tight max-w-[800px] mx-auto font-medium relative z-10">
                 UX/UI Designer making digital<br class="hidden md:block">
                 products work the way people<br class="hidden md:block">
                 <span class="drawn-underline">actually think.</span>
             </h1>
 
-            <!-- Supporting Paragraph (Constrained width to reduce cognitive load) -->
             <p
-                class="font-sans italic text-[14px] md:text-[15px] text-inkLight/90 max-w-[460px] mx-auto leading-[1.8] tracking-wide font-normal">
+                class="font-sans italic text-[14px] md:text-[15px] text-inkLight/90 max-w-[460px] mx-auto leading-[1.8] tracking-wide font-normal relative z-10">
                 (an empathetic problem-solver who asks the right questions to simplify complex challenges into
                 meaningful solutions)
             </p>
 
-            <!-- Mobile Only Portrait (Hidden on desktop) -->
-            <div class="mt-16 xl:hidden w-52 transform rotate-2 mx-auto pointer-events-auto">
-                <div class="bg-white p-3 pb-10 shadow-polaroid rounded-sm w-full relative">
-                    <div
-                        class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-5 bg-washiPeach opacity-80 z-20 transform -rotate-2 mix-blend-multiply">
-                    </div>
-                    <div class="aspect-[4/5] bg-gray-200 overflow-hidden border border-gray-100">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nisha Thakur" class="w-full h-full object-cover">
+            <!-- Mobile Only Portrait (Fixed positioning and hover) -->
+            <div class="mt-16 xl:hidden w-56 mx-auto pointer-events-auto group/profile">
+                <div
+                    class="bg-paper p-4 shadow-ui hover:shadow-ui-hover border border-black/5 rounded-[12px] w-full relative transform rotate-2 hover:scale-[1.02] transition-all duration-500 ease-out">
+                    <img src="https://www.diwyanivajpayee.in/clamp.png" alt="Binder Clip" class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-8 z-30 drop-shadow-md">
+                    <div class="aspect-[4/5] bg-gray-200 overflow-hidden border border-black/5 rounded-[8px]">
+                        <img src="https://i.ibb.co/WWH5mqDW/hero.webp" alt="Nisha Thakur" class="w-full h-full object-cover grayscale-[15%] transition-transform duration-700 ease-out group-hover/profile:scale-105">
                     </div>
                 </div>
             </div>
@@ -428,49 +415,41 @@
     <section id="work" class="relative py-24 md:py-32 bg-brandBlue">
         <div class="max-w-6xl mx-auto px-6 relative z-10">
 
-            <!-- Section Header -->
             <div class="mb-12 md:mb-16 relative inline-block">
                 <h2 class="font-serif text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 relative z-10">
                     Selected projects
                 </h2>
                 <p class="font-sans text-lg md:text-xl font-light text-white/80 max-w-lg leading-relaxed">A collection
-                    of projects where research,
-                    creativity, and problem-solving come together.</p>
+                    of projects where research, creativity, and problem-solving come together.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10 items-stretch">
 
-                <!-- Project 1: HMM Laundry -->
-                <a href="#" class="group flex flex-col relative cursor-pointer outline-none w-full h-full">
+                <!-- Project 1: HMM Laundry - Updated Design System -->
+                <a href="https://www.behance.net/gallery/248322191/HMM-Laundry" target="_blank"
+                    class="group flex flex-col relative cursor-pointer outline-none w-full h-full">
                     <div
-                        class="bg-paper p-5 md:p-6 rounded-sm shadow-soft transition-all duration-400 group-hover:-translate-y-2 group-hover:shadow-deep border border-black/5 relative flex flex-col flex-grow w-full h-full">
-
-                        <!-- Brand Detail: Washi Tape -->
+                        class="bg-paper p-6 xl:p-8 rounded-[12px] shadow-ui transition-all duration-400 group-hover:shadow-ui-hover group-hover:-translate-y-2 border border-black/5 relative flex flex-col flex-grow w-full h-full">
                         <div
-                            class="absolute -top-3 left-8 w-24 h-6 bg-washiPeach transform -rotate-3 opacity-90 shadow-sm z-20">
+                            class="absolute -top-3 left-8 w-24 h-6 bg-washiPeach rounded-[6px] transform -rotate-3 opacity-90 z-20 mix-blend-multiply">
                         </div>
 
-                        <!-- Visual Anchor (Image Dominance) -->
                         <div
-                            class="relative w-full aspect-[4/3] shrink-0 rounded overflow-hidden mb-7 bg-gray-100 border border-black/5">
-                            <img src="https://images.unsplash.com/photo-1618220179298-406216447814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="HMM Laundry App Mockup" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            class="relative w-full aspect-video shrink-0 overflow-hidden mb-6 xl:mb-8 bg-gray-100 border border-black/5 rounded-[8px] group/img">
+                            <img src="https://i.ibb.co/mVn0rYP5/hmm-laundry.webp" alt="HMM Laundry App Mockup" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105">
                         </div>
 
-                        <!-- Content Hierarchy -->
                         <div class="flex flex-col flex-grow">
-                            <!-- Meta Data & Action -->
-                            <div class="flex items-center justify-between mb-4 gap-4">
+                            <div class="flex items-center justify-between mb-5 gap-4">
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-inkLight uppercase tracking-widest shadow-sm">UI/UX</span>
-                                    <span class="px-3 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-inkLight uppercase tracking-widest shadow-sm">App Design</span>
+                                    <span class="label-maker transform -rotate-1">UI/UX</span>
+                                    <span class="label-maker transform rotate-1">App Design</span>
                                 </div>
                             </div>
-
-                            <!-- Title & Concise Teaser -->
                             <h3
-                                class="font-serif text-3xl font-semibold tracking-tight text-ink mb-3 group-hover:text-accent transition-colors">
+                                class="font-serif text-2xl xl:text-3xl font-semibold tracking-tight text-ink mb-3 group-hover:text-accent transition-colors">
                                 HMM Laundry</h3>
-                            <p class="font-sans text-inkLight text-[15px] leading-relaxed">
+                            <p class="font-sans text-inkLight text-[14.5px] xl:text-[15px] leading-relaxed">
                                 A simple and effortless mobile experience designed to help students book, track, and
                                 manage laundry services without the usual hassle.
                             </p>
@@ -478,39 +457,65 @@
                     </div>
                 </a>
 
-                <!-- Project 2: UniEvents -->
-                <a href="#" class="group flex flex-col relative cursor-pointer outline-none w-full h-full">
+                <!-- Project 2: UniEvents - Updated Design System -->
+                <a href="https://www.behance.net/gallery/250222181/UniEvents-Website-Design" target="_blank"
+                    class="group flex flex-col relative cursor-pointer outline-none w-full h-full">
                     <div
-                        class="bg-paper p-5 md:p-6 rounded-sm shadow-soft transition-all duration-400 group-hover:-translate-y-2 group-hover:shadow-deep border border-black/5 relative flex flex-col flex-grow w-full h-full">
-
-                        <!-- Brand Detail: Washi Tape -->
+                        class="bg-paper p-6 xl:p-8 rounded-[12px] shadow-ui transition-all duration-400 group-hover:shadow-ui-hover group-hover:-translate-y-2 border border-black/5 relative flex flex-col flex-grow w-full h-full">
                         <div
-                            class="absolute -top-3 right-8 w-20 h-6 bg-washiMint transform rotate-2 opacity-90 shadow-sm z-20">
+                            class="absolute -top-3 right-8 w-20 h-6 bg-washiMint rounded-[6px] transform rotate-2 opacity-90 z-20 mix-blend-multiply">
                         </div>
 
-                        <!-- Visual Anchor (Image Dominance) -->
                         <div
-                            class="relative w-full aspect-[4/3] shrink-0 rounded overflow-hidden mb-7 bg-gray-100 border border-black/5">
-                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="UniEvents Platform Mockup" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            class="relative w-full aspect-video shrink-0 overflow-hidden mb-6 xl:mb-8 bg-gray-100 border border-black/5 rounded-[8px] group/img">
+                            <img src="https://i.ibb.co/5hvwvMK8/unievents.webp" alt="UniEvents Platform Mockup" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105">
                         </div>
 
-                        <!-- Content Hierarchy -->
                         <div class="flex flex-col flex-grow">
-                            <!-- Meta Data & Action -->
-                            <div class="flex items-center justify-between mb-4 gap-4">
+                            <div class="flex items-center justify-between mb-5 gap-4">
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-inkLight uppercase tracking-widest shadow-sm">Product Design</span>
-                                    <span class="px-3 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-inkLight uppercase tracking-widest shadow-sm">Web Platform</span>
+                                    <span class="label-maker transform rotate-1">Product Design</span>
+                                    <span class="label-maker transform -rotate-1">Web Platform</span>
                                 </div>
                             </div>
-
-                            <!-- Title & Concise Teaser -->
                             <h3
-                                class="font-serif text-3xl font-semibold tracking-tight text-ink mb-3 group-hover:text-accent transition-colors">
+                                class="font-serif text-2xl xl:text-3xl font-semibold tracking-tight text-ink mb-3 group-hover:text-accent transition-colors">
                                 UniEvents</h3>
-                            <p class="font-sans text-inkLight text-[15px] leading-relaxed">
+                            <p class="font-sans text-inkLight text-[14.5px] xl:text-[15px] leading-relaxed">
                                 A user-friendly platform connecting students and organizers, making it incredibly simple
                                 to discover and manage college events.
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 3: Taskly - New Project -->
+                <a href="https://www.behance.net/gallery/252835949/Task-Management-App-Tasly" target="_blank"
+                    class="group flex flex-col relative cursor-pointer outline-none w-full h-full">
+                    <div
+                        class="bg-paper p-6 xl:p-8 rounded-[12px] shadow-ui transition-all duration-400 group-hover:shadow-ui-hover group-hover:-translate-y-2 border border-black/5 relative flex flex-col flex-grow w-full h-full">
+                        <div
+                            class="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-washiLavender rounded-[6px] transform -rotate-1 opacity-90 z-20 mix-blend-multiply">
+                        </div>
+
+                        <div
+                            class="relative w-full aspect-video shrink-0 overflow-hidden mb-6 xl:mb-8 bg-gray-100 border border-black/5 rounded-[8px] group/img">
+                            <img src="https://i.ibb.co/7t1cjf27/taskly.webp" alt="Taskly App Mockup" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105">
+                        </div>
+
+                        <div class="flex flex-col flex-grow">
+                            <div class="flex items-center justify-between mb-5 gap-4">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="label-maker transform -rotate-1">UI/UX</span>
+                                    <span class="label-maker transform rotate-1">Productivity</span>
+                                </div>
+                            </div>
+                            <h3
+                                class="font-serif text-2xl xl:text-3xl font-semibold tracking-tight text-ink mb-3 group-hover:text-accent transition-colors">
+                                Taskly</h3>
+                            <p class="font-sans text-inkLight text-[14.5px] xl:text-[15px] leading-relaxed">
+                                An intuitive task management application designed to boost productivity, simplify daily
+                                workflows, and help users stay organized effortlessly.
                             </p>
                         </div>
                     </div>
@@ -520,155 +525,96 @@
         </div>
     </section>
 
-    <section id="experience" class="relative py-24 md:py-32 bg-bgPrimary overflow-hidden">
-
-        <!-- Decorative Asset: Ambient Glow -->
-        <div
-            class="absolute top-[20%] left-[-10%] w-[50vw] max-w-[600px] aspect-square bg-stickyBlue/40 rounded-full mix-blend-multiply filter blur-[90px] pointer-events-none z-0">
-        </div>
-
-        <div class="max-w-5xl mx-auto px-6 relative z-10">
-
-            <!-- Section Header -->
-            <div class="mb-16 md:mb-24 text-center relative flex flex-col items-center">
-                <div
-                    class="absolute -top-6 left-1/2 -translate-x-[60%] w-20 h-6 bg-washiLavender opacity-70 transform -rotate-3 z-0 mix-blend-multiply">
-                </div>
-                <h2
-                    class="font-serif text-4xl md:text-5xl font-semibold tracking-tight text-ink relative z-10 inline-block">
-                    Work Experience
+    <section id="experience" class="relative py-24 md:py-32 bg-bgPrimary">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="mb-16 md:mb-24 text-center max-w-2xl mx-auto relative z-10">
+                <h2 class="font-serif text-4xl md:text-5xl font-semibold tracking-tight text-ink mb-4">Work Experience
                 </h2>
-                <p class="font-hand text-xl text-inkLight mt-4 transform rotate-1">The journey so far...</p>
+                <p class="font-sans text-lg md:text-xl font-light text-inkLight leading-relaxed">The journey so
+                    far—building scalable products and human-centered experiences.</p>
             </div>
 
-            <!-- Editorial Timeline List -->
-            <div class="space-y-16 md:space-y-20 relative">
-
-                <!-- Subtle guiding spine (Editorial structure line) -->
+            <div class="relative max-w-5xl mx-auto">
                 <div
-                    class="absolute left-4 md:left-[30%] top-6 bottom-6 w-px bg-black/10 hidden md:block z-0 border-l border-dashed border-inkLight/30">
+                    class="hidden md:block absolute left-1/3 top-0 bottom-0 w-px bg-black/5 transform -translate-x-1/2 z-0">
                 </div>
 
-                <!-- Experience 1: Mosaic Wellness -->
-                <div class="relative z-10 flex flex-col md:flex-row gap-6 md:gap-16 group">
-
-                    <!-- Meta Column (Date & Role Progression) -->
-                    <div class="md:w-[30%] flex md:justify-end md:text-right pt-1 relative">
-                        <!-- Custom Timeline Node (Hand-drawn feel) -->
+                <!-- Experience Item 1 - Updated Design System -->
+                <div class="relative z-10 flex flex-col md:flex-row mb-16 md:mb-24 group">
+                    <div
+                        class="hidden md:flex absolute left-1/3 transform -translate-x-1/2 top-10 w-4 h-4 items-center justify-center">
                         <div
-                            class="absolute right-[-36px] top-3 w-4 h-4 bg-paper border-[3px] border-accent rounded-full z-10 shadow-sm group-hover:scale-110 group-hover:bg-accent transition-all duration-300 hidden md:block">
+                            class="w-3 h-3 rounded-full bg-bgPrimary border-2 border-accent group-hover:bg-accent transition-colors duration-400">
                         </div>
+                    </div>
 
-                        <div class="pl-8 md:pl-0">
-                            <span class="font-hand text-accent text-2xl inline-block mb-1 group-hover:-translate-y-1 transition-transform">Oct 2024 — Present</span>
-                            <div class="mt-2 space-y-4">
-                                <!-- Current Role -->
-                                <div>
-                                    <h4
-                                        class="font-sans font-bold text-[14px] text-ink uppercase tracking-widest leading-tight">
-                                        Senior Product<br class="hidden md:block"> Designer</h4>
-                                    <p class="font-sans text-[12px] text-inkLight mt-0.5">Jun 2026 - Present</p>
-                                </div>
-                                <!-- Previous Role -->
-                                <div>
-                                    <h4
-                                        class="font-sans font-semibold text-[13px] text-inkLight uppercase tracking-wide leading-tight">
-                                        Product Designer</h4>
-                                    <p class="font-sans text-[12px] text-inkLight/70 mt-0.5">Oct 2024 - Jun 2026</p>
-                                </div>
+                    <div class="md:w-1/3 md:pr-14 md:text-right flex flex-col pt-8 mb-6 md:mb-0">
+                        <span class="font-sans text-[13px] font-bold text-accent uppercase tracking-[0.15em] mb-4">Jun 2026 — Present</span>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-sans text-[15px] font-bold text-ink">UI/UX Design Intern</h4>
+                                <span class="font-sans text-[13px] text-inkLight mt-0.5 block">Chandigarh, India · Remote</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Dossier Card Column -->
-                    <div class="md:w-[70%] pl-8 md:pl-0">
+                    <div class="md:w-2/3 md:pl-10">
                         <div
-                            class="bg-paper p-7 md:p-9 rounded-sm shadow-soft group-hover:shadow-deep transition-all duration-500 border border-black/5 relative hover:-translate-y-1">
-
-                            <!-- Brand Detail: Washi Tape -->
-                            <div
-                                class="absolute -top-3 -right-3 w-14 h-5 bg-washiMint opacity-90 transform rotate-6 shadow-sm mix-blend-multiply z-20">
-                            </div>
-
-                            <h3
-                                class="font-serif text-3xl font-semibold text-ink mb-4 group-hover:text-accent transition-colors">
-                                Be Bodywise <span class="text-inkLight text-xl font-medium">(Mosaic Wellness)</span>
+                            class="bg-paper p-8 md:p-10 rounded-[12px] shadow-ui border border-black/5 group-hover:shadow-ui-hover group-hover:-translate-y-1 transition-all duration-400 h-full flex flex-col">
+                            <h3 class="font-serif text-3xl font-semibold tracking-tight text-ink mb-6">
+                                UniEvent
                             </h3>
-
-                            <p class="font-sans text-inkLight text-[15.5px] leading-[1.8] mb-6">
-                                Owning end-to-end design for Be Bodywise — focusing on UX and visual work that directly
-                                lifts conversion rates and establishes brand consistency. Additionally leading
-                                cross-brand experiments for Little Joys to drive engagement.
+                            <p class="font-sans text-[15px] text-inkLight leading-[1.8] mb-8">
+                                Designing user-centric web and mobile interfaces through research, wireframing,
+                                prototyping, and high-fidelity UI design. Collaborating with cross-functional teams,
+                                maintaining design consistency, and iterating designs based on user feedback to deliver
+                                intuitive digital experiences.
                             </p>
-
-                            <div class="flex flex-wrap gap-2.5">
-                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">Product Design</span>
-                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">User Research</span>
-                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">Webflow</span>
-                            </div>
-
-                            <!-- Decorative Achievement Sticky -->
-                            <div
-                                class="absolute -bottom-8 -right-4 bg-stickyYellow p-3 shadow-sticky w-[140px] rounded-sm transform rotate-6 z-30 pointer-events-none hidden sm:block opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:-rotate-2 group-hover:-translate-y-2">
-                                <div class="w-1.5 h-1.5 rounded-full bg-accent/40 mb-1 mx-auto"></div>
-                                <p class="font-hand text-[15px] text-ink leading-tight text-center">Led major conversion
-                                    lift! 🚀</p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="px-3 py-1.5 bg-white border border-black/5 rounded-[8px] text-[10px] font-bold text-inkLight uppercase tracking-widest cursor-default">UX Research</span>
+                                <span class="px-3 py-1.5 bg-white border border-black/5 rounded-[8px] text-[10px] font-bold text-inkLight uppercase tracking-widest cursor-default">UI Design</span>
+                                <span class="px-3 py-1.5 bg-white border border-black/5 rounded-[8px] text-[10px] font-bold text-inkLight uppercase tracking-widest cursor-default">Prototyping</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Experience 2: Auzmor -->
-                <div class="relative z-10 flex flex-col md:flex-row gap-6 md:gap-16 group">
-
-                    <div class="md:w-[30%] flex md:justify-end md:text-right pt-1 relative">
+                <!-- Experience Item 2 - Updated Design System -->
+                <div class="relative z-10 flex flex-col md:flex-row group">
+                    <div
+                        class="hidden md:flex absolute left-1/3 transform -translate-x-1/2 top-10 w-4 h-4 items-center justify-center">
                         <div
-                            class="absolute right-[-36px] top-3 w-4 h-4 bg-paper border-[3px] border-inkLight/40 rounded-full z-10 shadow-sm group-hover:scale-110 group-hover:border-accent transition-all duration-300 hidden md:block">
+                            class="w-3 h-3 rounded-full bg-bgPrimary border-2 border-gray-300 group-hover:border-inkLight transition-colors duration-400">
                         </div>
+                    </div>
 
-                        <div class="pl-8 md:pl-0">
-                            <span class="font-hand text-inkLight text-2xl inline-block mb-1 group-hover:text-accent transition-colors">Jun 2022 — Sep 2024</span>
-                            <div class="mt-2">
-                                <h4
-                                    class="font-sans font-bold text-[14px] text-ink uppercase tracking-widest leading-tight">
-                                    Product Designer</h4>
+                    <div class="md:w-1/3 md:pr-14 md:text-right flex flex-col pt-8 mb-6 md:mb-0">
+                        <span class="font-sans text-[13px] font-bold text-inkLight uppercase tracking-[0.15em] mb-4">Mar 2026 — Jun 2026</span>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-sans text-[15px] font-bold text-ink">User Interface Designer</h4>
+                                <span class="font-sans text-[13px] text-inkLight mt-0.5 block">India · Remote</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="md:w-[70%] pl-8 md:pl-0">
+                    <div class="md:w-2/3 md:pl-10">
                         <div
-                            class="bg-paper p-7 md:p-9 rounded-sm shadow-soft group-hover:shadow-deep transition-all duration-500 border border-black/5 relative hover:-translate-y-1">
-
-                            <!-- Brand Detail: Washi Tape -->
-                            <div
-                                class="absolute -top-3 -left-4 w-16 h-5 bg-washiPeach opacity-80 transform -rotate-4 shadow-sm mix-blend-multiply z-20">
-                            </div>
-
-                            <h3
-                                class="font-serif text-3xl font-semibold text-ink mb-4 group-hover:text-accent transition-colors">
-                                Auzmor</h3>
-
-                            <p class="font-sans text-inkLight text-[15.5px] leading-[1.8] mb-6">
-                                Led the design architecture for <span class="text-ink font-medium">Auzmor Office</span>,
-                                <span class="text-ink font-medium">Learn (LXP)</span>, and
-                                <span class="text-ink font-medium">Freshflows</span>. Tasked with building complex B2B
-                                SaaS products entirely from scratch, turning ambiguous requirements into scalable,
-                                intuitive systems.
+                            class="bg-paper p-8 md:p-10 rounded-[12px] shadow-ui border border-black/5 group-hover:shadow-ui-hover group-hover:-translate-y-1 transition-all duration-400 h-full flex flex-col">
+                            <h3 class="font-serif text-3xl font-semibold tracking-tight text-ink mb-6">
+                                Bug2Build <span class="text-inkLight text-2xl font-medium">(Internship)</span>
+                            </h3>
+                            <p class="font-sans text-[15px] text-inkLight leading-[1.8] mb-8">
+                                Designed user-centric interfaces for web and mobile applications, focusing on usability
+                                and visual consistency. Created wireframes, prototypes, and high-fidelity UI designs
+                                using Figma. Collaborated with developers and stakeholders to translate ideas into
+                                functional designs while simplifying complex flows, enhancing accessibility, and
+                                maintaining global design systems.
                             </p>
-
-                            <div class="flex flex-wrap gap-2.5">
-                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">Product Design</span>
-                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">B2B SaaS</span>
-                                <span class="px-3.5 py-1.5 bg-white border border-gray-100 rounded-full text-[10px] font-bold text-ink uppercase tracking-widest shadow-sm">Prototyping</span>
-                            </div>
-
-                            <!-- Interactive Image Element (Casual Stack feel) -->
-                            <div
-                                class="absolute right-8 -top-12 w-24 transform rotate-12 opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-polaroid bg-white p-1.5 pb-4 z-30 pointer-events-none hidden lg:block group-hover:rotate-6 group-hover:-translate-y-2">
-                                <div class="aspect-square bg-gray-200 overflow-hidden border border-gray-100">
-                                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Wireframing" class="w-full h-full object-cover grayscale">
-                                </div>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="px-3 py-1.5 bg-white border border-black/5 rounded-[8px] text-[10px] font-bold text-inkLight uppercase tracking-widest cursor-default">UI/UX</span>
+                                <span class="px-3 py-1.5 bg-white border border-black/5 rounded-[8px] text-[10px] font-bold text-inkLight uppercase tracking-widest cursor-default">Figma</span>
+                                <span class="px-3 py-1.5 bg-white border border-black/5 rounded-[8px] text-[10px] font-bold text-inkLight uppercase tracking-widest cursor-default">Design Systems</span>
                             </div>
                         </div>
                     </div>
@@ -679,7 +625,6 @@
     </section>
 
     <section id="about" class="relative py-24 md:py-32 bg-bgSecondary overflow-hidden">
-        <!-- Hidden Interactive Stickers (Revealed via JS) -->
         <img id="sticker-fashion" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fashion" class="sticker-tooltip">
         <img id="sticker-reading" src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Reading" class="sticker-tooltip">
         <img id="sticker-music" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Music" class="sticker-tooltip">
@@ -687,15 +632,14 @@
 
         <div class="max-w-6xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row gap-16 items-center">
 
-            <!-- Left: Ruled Paper Content -->
+            <!-- Left: Ruled Paper Content - Updated Design System -->
             <div class="w-full lg:w-[55%] relative group z-20">
-                <!-- Washi tape -->
                 <div
-                    class="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-washiMint opacity-80 transform -rotate-2 z-30 shadow-sm mix-blend-multiply transition-transform duration-500 group-hover:rotate-1">
+                    class="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-washiMint rounded-[6px] opacity-80 transform -rotate-2 z-30 mix-blend-multiply transition-transform duration-500 group-hover:rotate-1">
                 </div>
 
                 <div
-                    class="bg-paper p-10 md:p-14 shadow-paper relative transform -rotate-1 rounded-sm border border-black/5 transition-transform duration-700 hover:rotate-0 hover:shadow-deep bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJsaW5lcyIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDQwIEwgMTAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlN2U3ZTciIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNsaW5lcykiLz48L3N2Zz4=')]">
+                    class="bg-paper p-10 md:p-14 shadow-ui relative transform -rotate-1 rounded-[12px] border border-black/5 transition-all duration-700 hover:rotate-0 hover:shadow-ui-hover bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJsaW5lcyIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDQwIEwgMTAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlN2U3ZTciIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNsaW5lcykiLz48L3N2Zz4=')]">
 
                     <h2
                         class="font-serif text-4xl md:text-5xl font-semibold mb-8 md:mb-10 text-ink relative inline-block">
@@ -725,7 +669,6 @@
                         </p>
                     </div>
 
-                    <!-- Interactive Doodles that appear on hover -->
                     <div
                         class="absolute bottom-6 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 pointer-events-none">
                         <svg width="40" height="40" viewBox="0 0 100 100" fill="none"
@@ -741,20 +684,17 @@
             <div
                 class="w-full lg:w-[45%] relative min-h-[500px] flex items-center justify-center pointer-events-none mt-10 lg:mt-0">
 
-                <!-- The Cassette Tape (Audio Interaction) -->
+                <!-- The Cassette Tape - Updated Design System -->
                 <div class="absolute top-4 right-4 md:right-10 z-30 pointer-events-auto transform rotate-12 cassette cursor-pointer group"
                     onmouseenter="playChime()">
-                    <!-- SVG Cassette -->
                     <div
-                        class="relative bg-white p-2 rounded-md shadow-sticky border border-gray-200 transition-all duration-300 group-hover:-translate-y-2 group-hover:rotate-[-6deg] group-hover:shadow-polaroid">
+                        class="relative bg-white p-3 rounded-[12px] shadow-ui border border-black/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:rotate-[-6deg] group-hover:shadow-ui-hover">
                         <div
-                            class="w-32 h-20 bg-gray-100 rounded border border-gray-300 flex items-center justify-center relative overflow-hidden">
-                            <!-- Label -->
+                            class="w-32 h-20 bg-gray-100 rounded-[8px] border border-black/5 flex items-center justify-center relative overflow-hidden">
                             <div
-                                class="absolute inset-x-2 top-2 bottom-2 bg-tapeMint/40 rounded-sm border border-black/10 flex flex-col items-center pt-1">
+                                class="absolute inset-x-2 top-2 bottom-2 bg-tapeMint/40 rounded-[6px] border border-black/5 flex flex-col items-center pt-1">
                                 <span class="font-hand text-[10px] text-ink font-bold">Mix Vol. 1</span>
-                                <div class="w-full h-px bg-black/10 my-1"></div>
-                                <!-- Reels -->
+                                <div class="w-full h-px bg-black/5 my-1"></div>
                                 <div class="flex gap-4 mt-1">
                                     <div
                                         class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center cassette-reel">
@@ -771,9 +711,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Tooltip -->
                         <div
-                            class="absolute -top-10 left-1/2 -translate-x-1/2 bg-ink text-white text-[11px] font-sans px-3 py-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                            class="absolute -top-10 left-1/2 -translate-x-1/2 bg-ink text-white text-[11px] font-sans px-3 py-1.5 rounded-[8px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
                             Hover for vibes 🎵
                             <div
                                 class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-ink transform rotate-45">
@@ -782,226 +721,294 @@
                     </div>
                 </div>
 
-                <!-- Background Polaroid (Static) -->
+                <!-- Background Polaroid - Updated Design System -->
                 <div
-                    class="absolute left-2 md:left-4 bottom-12 w-48 transform -rotate-12 opacity-80 blur-[1px] shadow-polaroid bg-white p-2 pb-8 z-10 pointer-events-auto transition-all duration-500 hover:blur-none hover:opacity-100 hover:z-40">
-                    <div class="aspect-square bg-gray-200 overflow-hidden border border-gray-100">
+                    class="absolute left-2 md:left-4 bottom-12 w-52 transform -rotate-12 opacity-80 blur-[1px] shadow-ui bg-white p-4 pb-12 rounded-[12px] border border-black/5 z-10 pointer-events-auto transition-all duration-500 hover:blur-none hover:opacity-100 hover:z-40">
+                    <div class="aspect-square bg-gray-200 overflow-hidden border border-black/5 rounded-[8px]">
                         <img src="https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Workspace" class="w-full h-full object-cover grayscale">
                     </div>
                 </div>
 
-                <!-- Foreground Magic Polaroid (Hover Swap) -->
-                <div class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-56 transform rotate-6 z-20 pointer-events-auto magic-polaroid shadow-polaroid bg-white p-3 pb-10 cursor-crosshair transition-transform duration-500 hover:rotate-2 hover:scale-105"
+                <!-- Foreground Magic Polaroid - Updated Design System -->
+                <div class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-60 transform rotate-6 z-20 pointer-events-auto magic-polaroid shadow-ui bg-white p-4 pb-14 border border-black/5 rounded-[12px] cursor-crosshair transition-transform duration-500 hover:rotate-2 hover:scale-105"
                     onmouseenter="playShutter()">
-
-                    <!-- Tape -->
                     <div
-                        class="absolute -top-3 left-8 w-16 h-5 bg-washiPeach opacity-90 transform -rotate-6 z-30 mix-blend-multiply">
+                        class="absolute -top-3 left-8 w-16 h-5 bg-washiPeach rounded-[6px] opacity-90 transform -rotate-6 z-30 mix-blend-multiply">
                     </div>
-
-                    <div class="aspect-[4/5] relative bg-gray-200 overflow-hidden border border-gray-100">
-                        <!-- Back Image (Candid / Fun) -->
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Candid Nisha" class="absolute inset-0 w-full h-full object-cover back-img z-10">
-
-                        <!-- Front Image (Professional) -->
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Professional Nisha" class="absolute inset-0 w-full h-full object-cover front-img z-20">
+                    <div class="aspect-[4/5] relative bg-gray-200 overflow-hidden border border-black/5 rounded-[8px]">
+                        <img src="https://i.ibb.co/gFcHbS0f/about-me-2.webp" alt="Candid Nisha" class="absolute inset-0 w-full h-full object-cover back-img z-10">
+                        <img src="https://i.ibb.co/yBPLYnCw/about-me.webp" alt="Professional Nisha" class="absolute inset-0 w-full h-full object-cover front-img z-20">
                     </div>
-
-                    <div class="absolute bottom-2 left-0 w-full text-center z-30">
+                    <div class="absolute bottom-4 left-0 w-full text-center z-30">
                         <p class="font-hand text-lg text-inkLight flex items-center justify-center gap-2">
                             Hover to reveal <span class="text-accent text-sm">✨</span>
                         </p>
                     </div>
                 </div>
 
-                <!-- Floating Sticky Note -->
+                <!-- Floating Sticky Note - Updated Design System -->
                 <div
-                    class="absolute -bottom-10 right-10 md:right-24 bg-stickyYellow p-4 w-40 shadow-sticky transform -rotate-6 z-30 pointer-events-auto transition-all duration-500 hover:-translate-y-3 hover:rotate-0 hover:shadow-polaroid cursor-grab">
-                    <div class="w-2 h-2 rounded-full bg-accent/30 mb-2 shadow-inner mx-auto"></div>
+                    class="absolute -bottom-10 right-10 md:right-24 bg-stickyYellow p-8 w-48 rounded-[12px] shadow-ui border border-black/5 transform -rotate-6 z-30 pointer-events-auto transition-all duration-500 hover:-translate-y-3 hover:rotate-0 hover:shadow-ui-hover cursor-grab">
+                    <div class="w-3 h-3 rounded-full bg-accent/30 mb-3 shadow-inner mx-auto"></div>
                     <p class="font-hand text-xl text-ink leading-tight text-center">Design is how it works.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="process" class="relative py-24 md:py-32 bg-bgPrimary overflow-hidden">
-
-        <!-- Decorative Background Element -->
-        <div
-            class="absolute right-[-10%] top-[10%] w-[40vw] max-w-[500px] aspect-square bg-tapePeach/20 rounded-full mix-blend-multiply filter blur-[80px] pointer-events-none z-0">
-        </div>
-
+    <section id="process" class="relative py-24 md:py-32 bg-bgPrimary">
         <div class="max-w-6xl mx-auto px-6 relative z-10">
-
-            <!-- Section Header -->
-            <div class="mb-16 md:mb-24 text-center md:text-left relative">
-                <h2
-                    class="font-serif text-4xl md:text-5xl font-semibold tracking-tight text-ink relative inline-block z-10">
-                    Process? Yeah... I have one.
-                    <!-- Decorative line -->
-                    <div class="absolute -bottom-3 left-0 w-32 h-1 bg-accent/20 hidden md:block"></div>
+            <div class="mb-16 md:mb-24">
+                <h2 class="font-serif text-4xl md:text-5xl font-semibold tracking-tight text-ink mb-4">Design Process
                 </h2>
-                <p class="font-sans text-lg md:text-xl font-light text-inkLight mt-5 max-w-2xl leading-relaxed">
+                <p class="font-sans text-lg md:text-xl font-light text-inkLight max-w-lg leading-relaxed">
                     A logical approach to turning ambiguity into functional, human-centered digital experiences.
                 </p>
             </div>
 
-            <!-- Process Grid (Staggered for organic flow) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-12 md:gap-y-6 relative mb-24">
+            <!-- The Thinking Board: Cohesive Desk Layout -->
+            <div class="relative max-w-5xl mx-auto mb-24 md:mb-32">
 
-                <!-- Subtle background connection line (Desktop) -->
-                <div
-                    class="absolute top-1/2 left-[10%] right-[10%] h-px border-t-2 border-dashed border-inkLight/10 hidden md:block z-0 transform -translate-y-1/2">
-                </div>
-                <div
-                    class="absolute top-[20%] bottom-[20%] left-1/2 w-px border-l-2 border-dashed border-inkLight/10 hidden md:block z-0 transform -translate-x-1/2">
-                </div>
+                <!-- Winding Dashed Connector Line (Desktop) -->
+                <svg class="absolute left-0 top-0 w-full h-full z-0 pointer-events-none hidden md:block"
+                    viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M 25 12 C 25 25, 75 25, 75 38 C 75 51, 25 51, 25 64 C 25 77, 75 77, 75 90" stroke="#6B7A8B"
+                        stroke-opacity="0.25" stroke-width="0.15" stroke-dasharray="0.8 1.5" fill="none"
+                        stroke-linecap="round" />
+                </svg>
 
-                <!-- Step 1 -->
-                <div
-                    class="relative bg-paper p-8 md:p-10 rounded-sm shadow-soft border border-black/5 group hover:shadow-deep transition-all duration-400 z-10 md:mt-0">
-                    <div
-                        class="absolute -top-3 left-8 w-16 h-5 bg-washiMint opacity-80 transform -rotate-2 mix-blend-multiply shadow-sm z-20">
+                <div class="flex flex-col space-y-12 md:space-y-0 relative z-10">
+
+                    <!-- Phase 1: The Brief (Discover & Align) -->
+                    <div class="md:w-[48%] md:mr-auto relative group ui-card transform md:-rotate-1">
+                        <!-- Authentic SVG Paperclip -->
+                        <div
+                            class="absolute -top-5 left-10 z-20 drop-shadow-md transform -rotate-2 transition-transform duration-400 group-hover:-translate-y-1 group-hover:rotate-0">
+                            <svg width="24" height="52" viewBox="0 0 24 52" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.5 45C9.80558 45 6 41.1944 6 36.5V14.5C6 11.4624 8.46243 9 11.5 9C14.5376 9 17 11.4624 17 14.5V38.5C17 40.433 15.433 42 13.5 42C11.567 42 10 40.433 10 38.5V18"
+                                    stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" />
+                                <path
+                                    d="M14.5 45C9.80558 45 6 41.1944 6 36.5V14.5C6 11.4624 8.46243 9 11.5 9C14.5376 9 17 11.4624 17 14.5V38.5C17 40.433 15.433 42 13.5 42C11.567 42 10 40.433 10 38.5V18"
+                                    stroke="#F1F5F9" stroke-width="1" stroke-linecap="round" />
+                            </svg>
+                        </div>
+
+                        <div
+                            class="bg-paper p-10 md:p-12 rounded-[12px] border border-black/5 shadow-ui group-hover:shadow-ui-hover transition-all duration-400 h-full flex flex-col relative z-10">
+                            <div class="flex items-center justify-between mb-8 relative z-10">
+                                <span class="bg-brandBlue/90 text-white font-sans text-[10.5px] font-bold uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-[4px] shadow-sm">Phase 01</span>
+                                <span class="font-hand text-brandBlue/80 text-[24px]">The Brief</span>
+                            </div>
+                            <h3
+                                class="font-serif text-[32px] md:text-[34px] font-semibold tracking-tight text-ink mb-5 relative z-10">
+                                Discover & Align</h3>
+                            <p class="font-sans text-[16px] text-inkLight leading-[1.8] relative z-10">
+                                I break down the problem, not just the brief. Aligning business goals, user needs, and
+                                technical constraints early sets a clear, actionable direction.
+                            </p>
+                        </div>
                     </div>
 
-                    <!-- Large Number Anchor -->
-                    <span class="absolute top-4 right-6 font-serif text-[80px] leading-none text-ink/5 group-hover:text-accent/10 transition-colors duration-500 pointer-events-none">1</span>
+                    <!-- Phase 2: The Evidence (Research & Explore) -->
+                    <div class="md:w-[48%] md:ml-auto md:mt-24 relative group ui-card transform md:rotate-1">
+                        <!-- Authentic SVG Paperclip -->
+                        <div
+                            class="absolute -top-5 left-10 z-20 drop-shadow-md transform rotate-2 transition-transform duration-400 group-hover:-translate-y-1 group-hover:rotate-0">
+                            <svg width="24" height="52" viewBox="0 0 24 52" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.5 45C9.80558 45 6 41.1944 6 36.5V14.5C6 11.4624 8.46243 9 11.5 9C14.5376 9 17 11.4624 17 14.5V38.5C17 40.433 15.433 42 13.5 42C11.567 42 10 40.433 10 38.5V18"
+                                    stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" />
+                                <path
+                                    d="M14.5 45C9.80558 45 6 41.1944 6 36.5V14.5C6 11.4624 8.46243 9 11.5 9C14.5376 9 17 11.4624 17 14.5V38.5C17 40.433 15.433 42 13.5 42C11.567 42 10 40.433 10 38.5V18"
+                                    stroke="#F1F5F9" stroke-width="1" stroke-linecap="round" />
+                            </svg>
+                        </div>
 
-                    <h3
-                        class="font-sans font-bold text-lg text-ink mb-3 relative z-10 group-hover:text-accent transition-colors">
-                        Discover & Align</h3>
-                    <p class="font-sans text-[15px] text-inkLight leading-[1.8] relative z-10">
-                        I break down the problem, not just the brief. Aligning business goals, user needs, and technical
-                        constraints early sets a clear, actionable direction.
-                    </p>
-                </div>
-
-                <!-- Step 2 -->
-                <div
-                    class="relative bg-paper p-8 md:p-10 rounded-sm shadow-soft border border-black/5 group hover:shadow-deep transition-all duration-400 z-10 md:mt-16">
-                    <div
-                        class="absolute -top-3 right-8 w-20 h-5 bg-washiLavender opacity-70 transform rotate-3 mix-blend-multiply shadow-sm z-20">
+                        <div
+                            class="bg-paper p-10 md:p-12 rounded-[12px] border border-black/5 shadow-ui group-hover:shadow-ui-hover transition-all duration-400 h-full flex flex-col relative z-10">
+                            <div class="flex items-center justify-between mb-8 relative z-10">
+                                <span class="bg-brandBlue/90 text-white font-sans text-[10.5px] font-bold uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-[4px] shadow-sm">Phase 02</span>
+                                <span class="font-hand text-brandBlue/80 text-[24px]">The Insights</span>
+                            </div>
+                            <h3
+                                class="font-serif text-[32px] md:text-[34px] font-semibold tracking-tight text-ink mb-5 relative z-10">
+                                Research & Explore</h3>
+                            <p class="font-sans text-[16px] text-inkLight leading-[1.8] relative z-10">
+                                I dive into user behavior, data, and established patterns to uncover insights that
+                                actually drive design decisions—not just validate assumptions.
+                            </p>
+                        </div>
                     </div>
 
-                    <span class="absolute top-4 right-6 font-serif text-[80px] leading-none text-ink/5 group-hover:text-accent/10 transition-colors duration-500 pointer-events-none">2</span>
+                    <!-- Phase 3: The Blueprint (Design & Iterate) -->
+                    <div class="md:w-[48%] md:mr-auto md:mt-12 relative group ui-card transform md:-rotate-1">
+                        <!-- Authentic SVG Paperclip -->
+                        <div
+                            class="absolute -top-5 left-10 z-20 drop-shadow-md transform -rotate-1 transition-transform duration-400 group-hover:-translate-y-1 group-hover:rotate-0">
+                            <svg width="24" height="52" viewBox="0 0 24 52" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.5 45C9.80558 45 6 41.1944 6 36.5V14.5C6 11.4624 8.46243 9 11.5 9C14.5376 9 17 11.4624 17 14.5V38.5C17 40.433 15.433 42 13.5 42C11.567 42 10 40.433 10 38.5V18"
+                                    stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" />
+                                <path
+                                    d="M14.5 45C9.80558 45 6 41.1944 6 36.5V14.5C6 11.4624 8.46243 9 11.5 9C14.5376 9 17 11.4624 17 14.5V38.5C17 40.433 15.433 42 13.5 42C11.567 42 10 40.433 10 38.5V18"
+                                    stroke="#F1F5F9" stroke-width="1" stroke-linecap="round" />
+                            </svg>
+                        </div>
 
-                    <h3
-                        class="font-sans font-bold text-lg text-ink mb-3 relative z-10 group-hover:text-accent transition-colors">
-                        Research & Explore</h3>
-                    <p class="font-sans text-[15px] text-inkLight leading-[1.8] relative z-10">
-                        I dive into user behavior, data, and established patterns to uncover insights that actually
-                        drive design decisions—not just validate assumptions.
-                    </p>
-                </div>
-
-                <!-- Step 3 -->
-                <div
-                    class="relative bg-paper p-8 md:p-10 rounded-sm shadow-soft border border-black/5 group hover:shadow-deep transition-all duration-400 z-10 md:mt-0">
-                    <div
-                        class="absolute -bottom-3 left-10 w-16 h-5 bg-washiPeach opacity-80 transform rotate-2 mix-blend-multiply shadow-sm z-20">
+                        <div
+                            class="bg-paper p-10 md:p-12 rounded-[12px] border border-black/5 shadow-ui group-hover:shadow-ui-hover transition-all duration-400 h-full flex flex-col relative z-10">
+                            <div class="flex items-center justify-between mb-8 relative z-10">
+                                <span class="bg-brandBlue/90 text-white font-sans text-[10.5px] font-bold uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-[4px] shadow-sm">Phase 03</span>
+                                <span class="font-hand text-brandBlue/80 text-[24px]">The Blueprint</span>
+                            </div>
+                            <h3
+                                class="font-serif text-[32px] md:text-[34px] font-semibold tracking-tight text-ink mb-5 relative z-10">
+                                Design & Iterate</h3>
+                            <p class="font-sans text-[16px] text-inkLight leading-[1.8] relative z-10">
+                                I design with intent, prototype rapidly, and refine based on continuous feedback. The
+                                focus is always on clarity, usability, and measurable impact.
+                            </p>
+                        </div>
                     </div>
 
-                    <span class="absolute top-4 right-6 font-serif text-[80px] leading-none text-ink/5 group-hover:text-accent/10 transition-colors duration-500 pointer-events-none">3</span>
+                    <!-- Phase 4: The Delivery (Execute & Optimize) -->
+                    <div class="md:w-[48%] md:ml-auto md:mt-24 relative group ui-card transform md:rotate-1">
+                        <!-- Authentic SVG Paperclip -->
+                        <div
+                            class="absolute -top-5 left-10 z-20 drop-shadow-md transform rotate-3 transition-transform duration-400 group-hover:-translate-y-1 group-hover:rotate-0">
+                            <svg width="24" height="52" viewBox="0 0 24 52" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.5 45C9.80558 45 6 41.1944 6 36.5V14.5C6 11.4624 8.46243 9 11.5 9C14.5376 9 17 11.4624 17 14.5V38.5C17 40.433 15.433 42 13.5 42C11.567 42 10 40.433 10 38.5V18"
+                                    stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" />
+                                <path
+                                    d="M14.5 45C9.80558 45 6 41.1944 6 36.5V14.5C6 11.4624 8.46243 9 11.5 9C14.5376 9 17 11.4624 17 14.5V38.5C17 40.433 15.433 42 13.5 42C11.567 42 10 40.433 10 38.5V18"
+                                    stroke="#F1F5F9" stroke-width="1" stroke-linecap="round" />
+                            </svg>
+                        </div>
 
-                    <h3
-                        class="font-sans font-bold text-lg text-ink mb-3 relative z-10 group-hover:text-accent transition-colors">
-                        Design & Iterate</h3>
-                    <p class="font-sans text-[15px] text-inkLight leading-[1.8] relative z-10">
-                        I design with intent, prototype rapidly, and refine based on continuous feedback. The focus is
-                        always on clarity, usability, and measurable impact.
-                    </p>
-                </div>
+                        <div
+                            class="bg-paper p-10 md:p-12 rounded-[12px] border border-black/5 shadow-ui group-hover:shadow-ui-hover transition-all duration-400 h-full flex flex-col relative z-10">
 
-                <!-- Step 4 -->
-                <div
-                    class="relative bg-paper p-8 md:p-10 rounded-sm shadow-soft border border-black/5 group hover:shadow-deep transition-all duration-400 z-10 md:mt-16">
-                    <div
-                        class="absolute top-1/2 -right-4 w-12 h-5 bg-washiMint opacity-80 transform -rotate-12 mix-blend-multiply shadow-sm z-20">
+                            <div class="flex items-center justify-between mb-8 relative z-10">
+                                <span class="bg-brandBlue/90 text-white font-sans text-[10.5px] font-bold uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-[4px] shadow-sm">Phase 04</span>
+                                <span class="font-hand text-brandBlue/80 text-[24px]">The Delivery</span>
+                            </div>
+                            <h3
+                                class="font-serif text-[32px] md:text-[34px] font-semibold tracking-tight text-ink mb-5 relative z-10">
+                                Execute & Optimize</h3>
+                            <p class="font-sans text-[16px] text-inkLight leading-[1.8] relative z-10">
+                                I collaborate closely with developers to ensure a flawless handoff, then track live
+                                performance to optimize and refine key user flows post-launch.
+                            </p>
+                        </div>
                     </div>
 
-                    <span class="absolute top-4 right-6 font-serif text-[80px] leading-none text-ink/5 group-hover:text-accent/10 transition-colors duration-500 pointer-events-none">4</span>
-
-                    <h3
-                        class="font-sans font-bold text-lg text-ink mb-3 relative z-10 group-hover:text-accent transition-colors">
-                        Execute & Optimize</h3>
-                    <p class="font-sans text-[15px] text-inkLight leading-[1.8] relative z-10">
-                        I collaborate closely with developers to ensure a flawless handoff, then track live performance
-                        to optimize and refine key user flows post-launch.
-                    </p>
                 </div>
-
             </div>
 
-            <!-- The Toolkit Drawer -->
-            <div class="relative mt-12 border-t border-dashed border-inkLight/20 pt-16">
+            <!-- Tools & Workflow -->
+            <div class="pt-16 md:pt-20 border-t border-black/5">
+                <div class="mb-14 md:mb-16 text-center">
+                    <h3 class="font-serif text-3xl font-semibold text-ink mb-3">Tools & Workflow</h3>
+                    <p class="font-sans text-[15px] text-inkLight max-w-md mx-auto">The digital ecosystem I use to bring
+                        structured logic and visual design to life.</p>
+                </div>
 
-                <div class="flex flex-col md:flex-row gap-8 items-start md:items-center">
-
-                    <div class="md:w-1/3">
-                        <h3 class="font-serif text-3xl font-semibold text-ink mb-2">Creative Toolkit</h3>
-                        <p class="font-hand text-lg text-inkLight transform -rotate-1">The tools of the trade.</p>
+                <div
+                    class="flex flex-wrap justify-center items-end gap-x-12 sm:gap-x-16 md:gap-x-20 gap-y-12 max-w-4xl mx-auto">
+                    <!-- Tool SVGs unchanged structurally, they already fit the aesthetic well -->
+                    <!-- 1. Figma -->
+                    <div class="flex flex-col items-center gap-3.5 group cursor-default w-[72px]">
+                        <div
+                            class="relative w-[24px] h-[24px] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-1">
+                            <svg viewBox="0 0 24 24"
+                                class="absolute inset-0 w-full h-full text-inkLight group-hover:text-ink transition-colors duration-400 hidden fallback-svg"
+                                fill="currentColor">
+                                <path
+                                    d="M8 5.329c0-2.944 2.389-5.329 5.333-5.329h5.334v10.659h-5.334C10.389 10.659 8 8.273 8 5.329zM18.667 15.987v-5.328h5.333c2.944 0 5.333 2.388 5.333 5.328s-2.389 5.329-5.333 5.329h-5.333zM8 15.987c0-2.944 2.389-5.329 5.333-5.329h5.334v5.329h-5.334c-2.944 0-5.333-2.384-5.333-5.329zM8 21.316c0-2.945 2.389-5.329 5.333-5.329h5.334v5.329c0 2.944-2.389 5.329-5.333 5.329S8 24.26 8 21.316z" />
+                            </svg>
+                            <img src="https://cdn.simpleicons.org/figma/6B7A8B" alt="Figma logo" class="absolute inset-0 w-full h-full transition-opacity duration-400 opacity-100 group-hover:opacity-0" onload="this.parentElement.querySelector('.fallback-svg').remove();" onerror="this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.querySelector('.fallback-svg').classList.remove('hidden');" />
+                            <img src="https://cdn.simpleicons.org/figma/2C3033" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full transition-opacity duration-400 opacity-0 group-hover:opacity-100" />
+                        </div>
+                        <span class="font-sans text-[10px] font-bold text-inkLight/80 uppercase tracking-[0.15em] group-hover:text-ink transition-colors duration-400 text-center">Figma</span>
                     </div>
 
-                    <!-- Tactile "Stamps" / Labels for Tools -->
-                    <div class="md:w-2/3 flex flex-wrap gap-3 md:gap-4">
-
-                        <!-- Tool 1 -->
+                    <!-- 2. Webflow -->
+                    <div class="flex flex-col items-center gap-3.5 group cursor-default w-[72px]">
                         <div
-                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
-                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">Fg</span>
-                            <span class="font-sans text-[14px] font-medium text-ink">Figma</span>
+                            class="relative w-[32px] h-[32px] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-1">
+                            <svg viewBox="0 0 24 24"
+                                class="absolute inset-0 w-full h-full text-inkLight group-hover:text-ink transition-colors duration-400 hidden fallback-svg"
+                                fill="currentColor">
+                                <path
+                                    d="M24 6.945L16.273 21.43h-4.32l2.673-4.887-4.148-7.585-4.153 7.585H1.996L9.727 2.055h4.318l-2.67 4.888 4.148 7.584 4.155-7.584H24z" />
+                            </svg>
+                            <img src="https://cdn.simpleicons.org/webflow/6B7A8B" alt="Webflow logo" class="absolute inset-0 w-full h-full transition-opacity duration-400 opacity-100 group-hover:opacity-0" onload="this.parentElement.querySelector('.fallback-svg').remove();" onerror="this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.querySelector('.fallback-svg').classList.remove('hidden');" />
+                            <img src="https://cdn.simpleicons.org/webflow/2C3033" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full transition-opacity duration-400 opacity-0 group-hover:opacity-100" />
                         </div>
+                        <span class="font-sans text-[10px] font-bold text-inkLight/80 uppercase tracking-[0.15em] group-hover:text-ink transition-colors duration-400 text-center">Webflow</span>
+                    </div>
 
-                        <!-- Tool 2 -->
+                    <!-- 3. Claude -->
+                    <div class="flex flex-col items-center gap-3.5 group cursor-default w-[72px]">
                         <div
-                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
-                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">Wf</span>
-                            <span class="font-sans text-[14px] font-medium text-ink">Webflow</span>
+                            class="relative w-[30px] h-[30px] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-1">
+                            <svg viewBox="0 0 24 24"
+                                class="absolute inset-0 w-full h-full text-inkLight group-hover:text-ink transition-colors duration-400 hidden fallback-svg"
+                                fill="currentColor">
+                                <path
+                                    d="M17.443 2.502h-3.413L4.996 21.498h3.336l1.96-3.805h7.251l.83 3.805h3.409l-4.339-18.996zM11.517 15.112l2.585-5.01 1.838 5.01h-4.423z" />
+                            </svg>
+                            <img src="https://cdn.simpleicons.org/anthropic/6B7A8B" alt="Claude logo" class="absolute inset-0 w-full h-full transition-opacity duration-400 opacity-100 group-hover:opacity-0" onload="this.parentElement.querySelector('.fallback-svg').remove();" onerror="this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.querySelector('.fallback-svg').classList.remove('hidden');" />
+                            <img src="https://cdn.simpleicons.org/anthropic/2C3033" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full transition-opacity duration-400 opacity-0 group-hover:opacity-100" />
                         </div>
+                        <span class="font-sans text-[10px] font-bold text-inkLight/80 uppercase tracking-[0.15em] group-hover:text-ink transition-colors duration-400 text-center">Anthropic</span>
+                    </div>
 
-                        <!-- Tool 3 -->
+                    <!-- 4. Framer -->
+                    <div class="flex flex-col items-center gap-3.5 group cursor-default w-[72px]">
                         <div
-                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
-                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">Ai</span>
-                            <span class="font-sans text-[14px] font-medium text-ink">ChatGPT / Claude</span>
+                            class="relative w-[24px] h-[24px] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-1">
+                            <svg viewBox="0 0 24 24"
+                                class="absolute inset-0 w-full h-full text-inkLight group-hover:text-ink transition-colors duration-400 hidden fallback-svg"
+                                fill="currentColor">
+                                <path d="M4 0h16v8h-8zM4 8h8v8H4zM12 16h8l-8 8z" />
+                            </svg>
+                            <img src="https://cdn.simpleicons.org/framer/6B7A8B" alt="Framer logo" class="absolute inset-0 w-full h-full transition-opacity duration-400 opacity-100 group-hover:opacity-0" onload="this.parentElement.querySelector('.fallback-svg').remove();" onerror="this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.querySelector('.fallback-svg').classList.remove('hidden');" />
+                            <img src="https://cdn.simpleicons.org/framer/2C3033" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full transition-opacity duration-400 opacity-0 group-hover:opacity-100" />
                         </div>
+                        <span class="font-sans text-[10px] font-bold text-inkLight/80 uppercase tracking-[0.15em] group-hover:text-ink transition-colors duration-400 text-center">Framer</span>
+                    </div>
 
-                        <!-- Tool 4 -->
+                    <!-- 5. Notion -->
+                    <div class="flex flex-col items-center gap-3.5 group cursor-default w-[72px]">
                         <div
-                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
-                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">No</span>
-                            <span class="font-sans text-[14px] font-medium text-ink">Notion</span>
+                            class="relative w-[28px] h-[28px] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-1">
+                            <svg viewBox="0 0 24 24"
+                                class="absolute inset-0 w-full h-full text-inkLight group-hover:text-ink transition-colors duration-400 hidden fallback-svg"
+                                fill="currentColor">
+                                <path
+                                    d="M4.459 4.208c-.755.766-1.045 1.255-1.045 2.115v11.354c0 1.488 1.054 2.118 2.378 2.118h11.968c.846 0 1.294-.43 2.14-1.28l3.65-3.69c.755-.765 1.045-1.254 1.045-2.114V1.357c0-1.488-1.054-2.118-2.378-2.118H10.25c-.846 0-1.294.43-2.14 1.28L4.46 4.208zM17.47 5.8v9.98c0 .245-.19.435-.435.435h-3.21c-.246 0-.436-.19-.436-.435v-5.26l-3.32 5.51c-.13.22-.36.35-.61.35H7.72c-.246 0-.436-.19-.436-.435V5.8c0-.245.19-.435.435-.435h3.21c.246 0 .436.19.436.435v5.26l3.32-5.51c.13-.22.36-.35.61-.35h1.74c.246 0 .436.19.436.435z" />
+                            </svg>
+                            <img src="https://cdn.simpleicons.org/notion/6B7A8B" alt="Notion logo" class="absolute inset-0 w-full h-full transition-opacity duration-400 opacity-100 group-hover:opacity-0" onload="this.parentElement.querySelector('.fallback-svg').remove();" onerror="this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.querySelector('.fallback-svg').classList.remove('hidden');" />
+                            <img src="https://cdn.simpleicons.org/notion/2C3033" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full transition-opacity duration-400 opacity-0 group-hover:opacity-100" />
                         </div>
-
-                        <!-- Tool 5 -->
-                        <div
-                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
-                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">Fr</span>
-                            <span class="font-sans text-[14px] font-medium text-ink">Framer</span>
-                        </div>
-
-                        <!-- Tool 6 -->
-                        <div
-                            class="group flex items-center gap-2 bg-white px-4 py-2.5 rounded-sm border border-gray-200 shadow-sm hover:shadow-polaroid hover:-translate-y-1 hover:border-accent/30 transition-all cursor-default">
-                            <span class="font-sans font-bold text-[11px] text-inkLight bg-gray-100 px-1.5 py-0.5 rounded uppercase tracking-wider group-hover:bg-accent/10 group-hover:text-accent transition-colors">Ps</span>
-                            <span class="font-sans text-[14px] font-medium text-ink">Photoshop</span>
-                        </div>
-
+                        <span class="font-sans text-[10px] font-bold text-inkLight/80 uppercase tracking-[0.15em] group-hover:text-ink transition-colors duration-400 text-center">Notion</span>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- Unified Footer & CTA Section -->
-    <footer id="contact" class="relative pt-24 md:pt-32 pb-8 md:pb-12 bg-bgPrimary">
+    <!-- Footer -->
+    <footer id="contact" class="relative pt-24 md:pt-32 pb-8 md:pb-12 bg-bgPrimary border-t border-black/5">
         <div class="max-w-6xl mx-auto px-6">
-
-            <!-- Top Grid: Mission and Links (The new integrated CTA) -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16 md:mb-24 items-start">
-
-                <!-- Left: Mission Statement -->
                 <div class="col-span-1 md:col-span-6 lg:col-span-6">
                     <p class="font-sans text-xl text-inkLight leading-relaxed max-w-sm">
                         Crafting digital environments rooted in user empathy, logical architecture, and intentional
@@ -1009,77 +1016,56 @@
                     </p>
                 </div>
 
-                <!-- Right: Information Architecture (Inquiries & Connect) -->
                 <div
                     class="col-span-1 md:col-span-6 lg:col-span-6 flex flex-col sm:flex-row gap-12 sm:gap-24 md:justify-end">
-
-                    <!-- Inquiries Column -->
                     <div>
                         <h4 class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-inkLight mb-6">
                             Inquiries</h4>
                         <ul class="space-y-4">
-                            <li>
-                                <a href="mailto:hello@nisha.com"
-                                    class="font-sans text-[16px] text-ink hover:text-accent transition-colors font-medium">hello@nisha.com</a>
-                            </li>
-                            <li class="font-sans text-[16px] text-inkLight font-medium">
-                                +91 98765 43210
+                            <li><a href="mailto:ux.nishathakur@gmail.com"
+                                    class="font-sans text-[16px] text-ink hover:text-accent transition-colors font-medium">ux.nishathakur@gmail.com</a>
                             </li>
                         </ul>
                     </div>
-
-                    <!-- Connect Column -->
                     <div>
                         <h4 class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-inkLight mb-6">
                             Connect</h4>
                         <ul class="space-y-4">
-                            <li><a href="#"
+                            <li><a href="https://www.linkedin.com/in/nisha-t-853a80381/" target="_blank"
                                     class="font-sans text-[16px] text-ink hover:text-accent transition-colors font-medium">LinkedIn</a>
                             </li>
-                            <li><a href="#"
-                                    class="font-sans text-[16px] text-ink hover:text-accent transition-colors font-medium">Dribbble</a>
-                            </li>
-                            <li><a href="#"
-                                    class="font-sans text-[16px] text-ink hover:text-accent transition-colors font-medium">Read.cv</a>
+                            <li><a href="https://www.behance.net/nishathakur27" target="_blank"
+                                    class="font-sans text-[16px] text-ink hover:text-accent transition-colors font-medium">Behance</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Delicate Divider -->
-            <div class="w-full h-px bg-black/10 mb-10 md:mb-16"></div>
+            <div class="w-full h-px bg-black/5 mb-10 md:mb-16"></div>
 
-            <!-- Bottom Typographic Anchor & Legal -->
             <div class="flex flex-col md:flex-row items-end justify-between gap-10">
-
-                <!-- Massive Typographic Brand -->
                 <div class="relative">
                     <h2
                         class="font-serif text-[70px] md:text-[90px] lg:text-[110px] leading-[0.8] text-ink font-semibold tracking-tight -ml-1">
                         Nisha.
                     </h2>
-                    <!-- Signature Accent -->
                     <span class="absolute -top-6 -right-6 md:-top-4 md:-right-12 font-hand text-2xl text-accent transform rotate-[-6deg]">Thank you!</span>
                 </div>
-
-                <!-- Legal/Copyright Links -->
                 <div class="flex flex-wrap items-center gap-6 font-sans text-[13px] text-inkLight font-medium pb-2">
                     <span>&copy; 2026 Nisha Thakur</span>
                     <a href="#" class="hover:text-ink transition-colors">Privacy</a>
-                    <a href="#" class="hover:text-ink transition-colors">Resume</a>
+                    <a href="https://drive.google.com/file/d/1oJ4603qC5KtAtqaaD56DQ3ENs1xwwiuk/view" target="_blank"
+                        class="hover:text-ink transition-colors">Resume</a>
                 </div>
             </div>
-
         </div>
     </footer>
 
     <!-- Interactive Script for Audio & Tooltips -->
     <script>
-        // --- WEB AUDIO API SYSTEM ---
         let audioCtx = null;
-
-        // Initialize audio safely after user interaction
+        
         function initAudio() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1088,13 +1074,11 @@
                 audioCtx.resume();
             }
         }
-
-        // Attach to document to unlock audio early
+        
         document.addEventListener('click', initAudio, { once: true });
         document.addEventListener('mouseover', initAudio, { once: true });
         document.addEventListener('touchstart', initAudio, { once: true });
-
-        // Synthesize a soft "Pop" for text hover
+        
         function playPop() {
             if (!audioCtx) return;
             const osc = audioCtx.createOscillator();
@@ -1112,8 +1096,7 @@
             osc.start();
             osc.stop(audioCtx.currentTime + 0.1);
         }
-
-        // Synthesize a "Camera Shutter / Paper Slide" for Polaroid hover
+        
         function playShutter() {
             if (!audioCtx) return;
             const osc = audioCtx.createOscillator();
@@ -1131,8 +1114,7 @@
             osc.start();
             osc.stop(audioCtx.currentTime + 0.05);
         }
-
-        // Synthesize a gentle "Chime" for the Cassette Tape
+        
         function playChime() {
             if (!audioCtx) return;
             const osc = audioCtx.createOscillator();
@@ -1141,7 +1123,7 @@
             gain.connect(audioCtx.destination);
             
             osc.type = 'triangle';
-            osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5 Note
+            osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
             
             gain.gain.setValueAtTime(0, audioCtx.currentTime);
             gain.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime + 0.1);
@@ -1150,8 +1132,7 @@
             osc.start();
             osc.stop(audioCtx.currentTime + 1.2);
         }
-
-        // --- INTERACTIVE WORD TOOLTIPS (STICKERS) ---
+        
         document.addEventListener('DOMContentLoaded', () => {
             const interactiveWords = document.querySelectorAll('.interactive-word');
             
@@ -1160,7 +1141,7 @@
                 const sticker = document.getElementById(targetId);
                 
                 if(!sticker) return;
-
+        
                 word.addEventListener('mouseenter', () => {
                     sticker.classList.add('active');
                 });
@@ -1170,11 +1151,8 @@
                 });
                 
                 word.addEventListener('mousemove', (e) => {
-                    // Offset slightly from cursor
                     const x = e.clientX + 25; 
                     const y = e.clientY + 25;
-                    
-                    // Add slight dynamic rotation based on cursor position
                     const rotate = (e.clientX % 20) - 10;
                     
                     sticker.style.left = `${x}px`;
